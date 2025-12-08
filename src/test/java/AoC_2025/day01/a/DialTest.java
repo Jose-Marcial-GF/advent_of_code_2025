@@ -2,6 +2,8 @@ package AoC_2025.day01.a;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,27 +37,54 @@ public class DialTest {
 
 
     @Test
-    public void should_move_given_a_stream_of_direction(){
-        assertThat(Snake.create().move(orders).position()).isEqualTo(46);
+    public void should_move_given_a_large_string(){
+        assertThat(Snake.create().move(orders).position()).isEqualTo(32);
     }
 
     public static class Snake {
         private final int position;
 
         private Snake(int position) {
-            this.position = position;
+            this.position = validate(position);
+        }
+
+        private int validate(int position) {
+            return (position +100) % 100 ;
         }
 
         public static Snake create(){
             return new Snake(50);
         }
 
+        private static Snake in(int position, Stream<String> movements){
+            return new Snake(position).move(toString(movements));
+        }
+
         private static Snake in(int position){
             return new Snake(position);
         }
 
-        public Snake move(String direction) {
-            return Snake.in(position + toInt(direction));
+
+        private static String toString(Stream<String> movements) {
+            return movements.collect(Collectors.joining("\n"));
+        }
+
+
+        public Snake move(String  directions) {
+            if(directions.isEmpty()) return Snake.in(position);
+            return Snake.in(position + toInt(getFirst(toStream(directions))), getRest(toStream(directions)));
+        }
+
+        private static String getFirst(Stream<String> directions) {
+            return directions.findFirst().orElse("0");
+        }
+
+        private Stream<String> getRest(Stream<String> directions) {
+            return directions.skip(1);
+        }
+
+        private Stream<String> toStream(String direction) {
+            return Arrays.stream(direction.split("\n"));
         }
 
         public int position(){
@@ -65,8 +94,8 @@ public class DialTest {
         private int toInt(String direction) {
             return Integer.parseInt(
                     direction
-                    .replaceAll("L", "-")
-                    .replaceAll("R", "+")
+                    .replace("L", "-")
+                    .replace("R", "+")
             );
         }
     }
