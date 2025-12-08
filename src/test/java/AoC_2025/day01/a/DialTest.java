@@ -27,7 +27,11 @@ public class DialTest {
         }
 
         private int toInt(String direction) {
-            return Integer.parseInt(direction.replaceAll("L", "-"));
+            return Integer.parseInt(
+                    direction
+                    .replaceAll("L", "-")
+                    .replaceAll("R", "+")
+            );
         }
     }
 }
