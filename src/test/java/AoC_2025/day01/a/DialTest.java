@@ -36,10 +36,19 @@ public class DialTest {
     }
 
 
+
     @Test
     public void should_move_given_a_large_string(){
         assertThat(Snake.create().move(orders).position()).isEqualTo(32);
     }
+
+
+    @Test
+    public void should_count_the_zeros(){
+        assertThat(Snake.create().move("L50").count()).isEqualTo(1);
+    }
+
+
 
     public static class Snake {
         private final int position;
