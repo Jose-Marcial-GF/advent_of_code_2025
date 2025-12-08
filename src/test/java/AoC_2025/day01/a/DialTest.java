@@ -16,6 +16,12 @@ public class DialTest {
         assertThat(Snake.create().move("L2").move("L2").position()).isEqualTo(46);
     }
 
+
+    @Test
+    public void should_move_given_a_stream_of_direction(){
+        assertThat(Snake.create().move("L2").move("L2").position()).isEqualTo(46);
+    }
+
     public static class Snake {
         private final int position;
 
