@@ -46,15 +46,24 @@ public class DialTest {
     @Test
     public void should_count_the_zeros(){
         assertThat(Snake.create().move("L50").count()).isEqualTo(1);
+        assertThat(Snake.create().move("R50").count()).isEqualTo(1);
+        assertThat(Snake.create().move("R50").move("L100").count()).isEqualTo(1);
     }
+
 
 
 
     public static class Snake {
         private final int position;
+        private final int count;
 
-        private Snake(int position) {
+        private Snake(int position, int count) {
             this.position = validate(position);
+            this.count = upDate(count);
+        }
+
+        private static int upDate(int count) {
+            return count == 0 ? count + 1 : count;
         }
 
         private int validate(int position) {
@@ -62,15 +71,15 @@ public class DialTest {
         }
 
         public static Snake create(){
-            return new Snake(50);
+            return new Snake(50, 0);
         }
 
-        private static Snake in(int position, Stream<String> movements){
-            return new Snake(position).move(toString(movements));
+        private static Snake in(int position, int count, Stream<String> movements){
+            return new Snake(position, count).move(toString(movements));
         }
 
-        private static Snake in(int position){
-            return new Snake(position);
+        private static Snake in(int position, int count){
+            return new Snake(position, count);
         }
 
 
@@ -80,8 +89,8 @@ public class DialTest {
 
 
         public Snake move(String  directions) {
-            if(directions.isEmpty()) return Snake.in(position);
-            return Snake.in(position + toInt(getFirst(toStream(directions))), getRest(toStream(directions)));
+            if(directions.isEmpty()) return Snake.in(position, count);
+            return Snake.in(position + toInt(getFirst(toStream(directions))), count, getRest(toStream(directions)));
         }
 
         private static String getFirst(Stream<String> directions) {
@@ -106,6 +115,10 @@ public class DialTest {
                     .replace("L", "-")
                     .replace("R", "+")
             );
+        }
+
+        public int count() {
+            return this.count;
         }
     }
 }
