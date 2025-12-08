@@ -7,8 +7,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DialTest {
     @Test
     public void should_move_given_a_direction() {
-        assertThat(Snake.create().move("L1")).isEqualTo(49);
-        assertThat(Snake.create().move("R1")).isEqualTo(51);
+        assertThat(Snake.create().move("L2")).isEqualTo(48);
+        assertThat(Snake.create().move("R8")).isEqualTo(58);
+    }
+
+    public void should_move_given_more_than_one_direction(){
+        assertThat(Snake.create().move("L2").move("L2").positon).isEqualTo(46);
     }
 
     public static class Snake {
