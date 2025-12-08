@@ -8,6 +8,7 @@ public class DialTest {
     @Test
     public void should_move_given_a_direction() {
         assertThat(Snake.create().move("L1")).isEqualTo(49);
+        assertThat(Snake.create().move("R1")).isEqualTo(51);
     }
 
     public static class Snake {
