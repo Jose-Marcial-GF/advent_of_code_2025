@@ -2,9 +2,26 @@ package AoC_2025.day01.a;
 
 import org.junit.Test;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DialTest {
+
+    private static final String orders = """
+            L68
+            L30
+            R48
+            L5
+            R60
+            L55
+            L1
+            L99
+            R14
+            L82
+            """;
+
+
     @Test
     public void should_move_given_a_direction() {
         assertThat(Snake.create().move("L2").position()).isEqualTo(48);
@@ -19,7 +36,7 @@ public class DialTest {
 
     @Test
     public void should_move_given_a_stream_of_direction(){
-        assertThat(Snake.create().move("L2").move("L2").position()).isEqualTo(46);
+        assertThat(Snake.create().move(orders).position()).isEqualTo(46);
     }
 
     public static class Snake {
