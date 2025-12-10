@@ -20,12 +20,11 @@ public class Main {
         }
     }
 
-    private static String getMovement() {
+    private static String Movements() {
         return getPuzzleInput().collect(Collectors.joining("\n"));
     }
 
     static void main() {
-        int count = Snake.create().move(getMovement()).count();
-        System.out.println(count);
+        System.out.println(World.with(Movements()).start().count());
     }
 }

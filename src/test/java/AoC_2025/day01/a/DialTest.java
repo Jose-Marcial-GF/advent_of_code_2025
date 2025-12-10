@@ -35,21 +35,21 @@ public class DialTest {
 
     @Test
     public void should_move_given_a_large_string(){
-        assertThat(Snake.create().move(orders).position()).isEqualTo(32);
+        assertThat(World.with(orders).start().position()).isEqualTo(32);
     }
 
 
     @Test
     public void should_count_the_zeros(){
-        assertThat(Snake.create().move("L50").count()).isEqualTo(1);
-        assertThat(Snake.create().move("R50").count()).isEqualTo(1);
-        assertThat(Snake.create().move("R50").move("L1100").count()).isEqualTo(2);
+        assertThat(World.with("L50").start().count()).isEqualTo(1);
+        assertThat(World.with("R50").start().count()).isEqualTo(1);
+        assertThat(World.with("R50\nL1200").start().count()).isEqualTo(2);
     }
 
 
     @Test
     public void should_count_the_zeros_given_a_large_string() {
-        assertThat(Snake.create().move(orders).count()).isEqualTo(3);
+        assertThat(World.with(orders).start().count()).isEqualTo(3);
     }
 
 
