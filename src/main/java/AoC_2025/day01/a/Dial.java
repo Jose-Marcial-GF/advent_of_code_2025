@@ -1,25 +1,25 @@
 package AoC_2025.day01.a;
 
-public class Snake {
+public class Dial {
     private final int position;
     private final int loops;
 
-    private Snake(int position, int loops) {
+    private Dial(int position, int loops) {
         this.position = position;
         this.loops = loops;
     }
 
-    public static Snake create() {
-        return new Snake(50, 0);
+    public static Dial create() {
+        return new Dial(50, 0);
     }
 
 
-    public static Snake in(int position, int loops) {
-        return new Snake(position, loops);
+    public static Dial in(int position, int loops) {
+        return new Dial(position, loops);
     }
 
-    public Snake move(String directions) {
-        return Snake.in(position + toInt(directions), loops);
+    public Dial move(String directions) {
+        return Dial.in(position + toInt(directions), loops);
     }
 
     public int position() {

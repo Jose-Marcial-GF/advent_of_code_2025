@@ -3,28 +3,28 @@ package AoC_2025.day01.a;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public class World {
+public class Engine {
 
     private final Stream<String> orders;
 
-    private World(Stream<String> orders) {
+    private Engine(Stream<String> orders) {
         this.orders = orders;
     }
 
-    public static World with(String orders){
-        return new World(Arrays.stream(orders.split("\n")));
+    public static Engine with(String orders){
+        return new Engine(Arrays.stream(orders.split("\n")));
     }
 
-    public Snake start(){
-        return orders.reduce(Snake.create(), World::ckeck, (a, b) -> b);
+    public Dial start(){
+        return orders.reduce(Dial.create(), Engine::ckeck, (a, b) -> b);
     }
 
-    private static Snake ckeck(Snake snake, String s) {
-        Snake candidate = snake.move(s);
+    private static Dial ckeck(Dial snake, String s) {
+        Dial candidate = snake.move(s);
         if(isValid(candidate.position())){
             return candidate;
         }
-        return Snake.in(validate(candidate.position()), upDateLoop(candidate));
+        return Dial.in(validate(candidate.position()), upDateLoop(candidate));
     }
 
     private static boolean isValid(int position) {
@@ -35,7 +35,7 @@ public class World {
         return (position + 100 + 100 * Math.max(1, Math.abs(position) / 100)) % (100);
     }
 
-    static int upDateLoop(Snake snake) {
+    static int upDateLoop(Dial snake) {
         return validate(snake.position()) == 0 ? snake.count() + 1 : snake.count();
     }
 }

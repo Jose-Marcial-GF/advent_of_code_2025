@@ -25,6 +25,6 @@ public class Main {
     }
 
     static void main() {
-        System.out.println(World.with(Movements()).start().count());
+        System.out.println(Engine.with(Movements()).start().count());
     }
 }

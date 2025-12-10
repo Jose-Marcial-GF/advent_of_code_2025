@@ -22,34 +22,34 @@ public class DialTest {
 
     @Test
     public void should_move_given_a_direction() {
-        assertThat(Snake.create().move("L2").position()).isEqualTo(48);
-        assertThat(Snake.create().move("R8").position()).isEqualTo(58);
+        assertThat(Dial.create().move("L2").position()).isEqualTo(48);
+        assertThat(Dial.create().move("R8").position()).isEqualTo(58);
     }
 
     @Test
     public void should_move_given_more_than_one_direction(){
-        assertThat(Snake.create().move("L2").move("L2").position()).isEqualTo(46);
+        assertThat(Dial.create().move("L2").move("L2").position()).isEqualTo(46);
     }
 
 
 
     @Test
     public void should_move_given_a_large_string(){
-        assertThat(World.with(orders).start().position()).isEqualTo(32);
+        assertThat(Engine.with(orders).start().position()).isEqualTo(32);
     }
 
 
     @Test
     public void should_count_the_zeros(){
-        assertThat(World.with("L50").start().count()).isEqualTo(1);
-        assertThat(World.with("R50").start().count()).isEqualTo(1);
-        assertThat(World.with("R50\nL1200").start().count()).isEqualTo(2);
+        assertThat(Engine.with("L50").start().count()).isEqualTo(1);
+        assertThat(Engine.with("R50").start().count()).isEqualTo(1);
+        assertThat(Engine.with("R50\nL1200").start().count()).isEqualTo(2);
     }
 
 
     @Test
     public void should_count_the_zeros_given_a_large_string() {
-        assertThat(World.with(orders).start().count()).isEqualTo(3);
+        assertThat(Engine.with(orders).start().count()).isEqualTo(3);
     }
 
 
