@@ -2,11 +2,11 @@ package AoC_2025.day01.a;
 
 public class Dial {
     private final int position;
-    private final int loops;
+    private final int count;
 
-    private Dial(int position, int loops) {
+    private Dial(int position, int count) {
         this.position = position;
-        this.loops = loops;
+        this.count = count;
     }
 
     public static Dial create() {
@@ -14,12 +14,30 @@ public class Dial {
     }
 
 
-    public static Dial in(int position, int loops) {
-        return new Dial(position, loops);
+    public static Dial in(int position, int count) {
+        if(isValid(position)){
+            return new Dial(position, count);
+        }
+        return new Dial(validate(position), updateCount(position, count));
+    }
+    private static boolean isValid(int position) {
+        return position < 100 && position >0;
+    }
+
+    static int validate(int position) {
+        return (position + 100 + 100 * Math.max(1, Math.abs(position) / 100)) % (100);
+    }
+
+    static int updateCount(int position, int count) {
+        return isEqualZero(position) ? count + 1 : count;
+    }
+
+    private static boolean isEqualZero(int position) {
+        return Math.abs(position) % 100 == 0;
     }
 
     public Dial move(String directions) {
-        return Dial.in(position + toInt(directions), loops);
+        return Dial.in(position + toInt(directions), count);
     }
 
     public int position() {
@@ -35,6 +53,6 @@ public class Dial {
     }
 
     public int count() {
-        return this.loops;
+        return this.count;
     }
 }

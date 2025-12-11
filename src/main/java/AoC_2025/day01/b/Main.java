@@ -1,4 +1,4 @@
-package AoC_2025.day01.a;
+package AoC_2025.day01.b;
 
 import java.io.IOException;
 import java.nio.file.Files;
