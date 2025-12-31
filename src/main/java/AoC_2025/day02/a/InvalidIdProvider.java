@@ -5,7 +5,7 @@ import java.util.stream.LongStream;
 class InvalidIdProvider {
 
     public static LongStream getInvalidCodes(Long min, Long max) {
-        return LongStream.range(min, max + 1).mapToObj(String::valueOf).filter(InvalidIdProvider::isValid).mapToLong(InvalidIdProvider::toLong).filter(i -> i > 0);
+        return LongStream.range(min, max + 1).mapToObj(String::valueOf).filter(InvalidIdProvider::isValid).mapToLong(InvalidIdProvider::toLong);
     }
 
     private static boolean isValid(String s) {
