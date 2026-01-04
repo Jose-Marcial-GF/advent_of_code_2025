@@ -10,7 +10,7 @@ class BatteryBuilder {
     }
 
     public static BatteryBuilder length(int length) {
-        return new BatteryBuilder(12);
+        return new BatteryBuilder(length);
     }
 
 
