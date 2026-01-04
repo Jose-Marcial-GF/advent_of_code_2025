@@ -26,6 +26,7 @@ public class Main {
     }
 
     static void main() {
-        System.out.println(BatteryBuilder.with(voltages()));
+        BatteryBuilder length = BatteryBuilder.length(12);
+        System.out.println(length.with(voltages()));
     }
 }
