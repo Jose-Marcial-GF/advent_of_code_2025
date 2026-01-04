@@ -1,6 +1,7 @@
 package AoC_2025.day03.b;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 class BatteryBuilder {
 
@@ -25,22 +26,30 @@ class BatteryBuilder {
 
     static class Battery {
         private final String voltage;
-        private int length;
+        private final int length;
+        private int initialIndex;
 
         Battery(String voltage, int length) {
             this.length = length;
+            this.initialIndex = 0;
             this.voltage = extracted(voltage);
         }
 
         private String extracted(String voltages) {
-            int initialIndex = 0;
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < length; i++) {
-                String number = String.valueOf(getMax(initialIndex, voltages.length()-length+1+i, voltages));
-                initialIndex = getMaxIndex(voltages, number, initialIndex) +1;
-                stringBuilder.append(number);
+                initialIndex = updateInitialIndex(voltages, i);
+                stringBuilder.append(voltages.charAt(initialIndex-1));
             }
             return stringBuilder.toString();
+        }
+
+        private int updateInitialIndex(String voltages, int i) {
+            return getMaxIndex(voltages, getNumber(voltages, i), initialIndex) + 1;
+        }
+
+        private String getNumber(String voltages, int i) {
+            return String.valueOf(getMax(initialIndex, voltages.length() - length + 1 + i, voltages));
         }
 
         private int getMax(int initialIndex, int lastIndex, String voltages) {
