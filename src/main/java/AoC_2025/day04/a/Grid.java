@@ -2,6 +2,7 @@ package AoC_2025.day04.a;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Grid {
     private final char[][] grid;
