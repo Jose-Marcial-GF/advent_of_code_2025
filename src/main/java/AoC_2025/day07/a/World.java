@@ -7,15 +7,14 @@ import java.util.stream.Stream;
 
 public record World(Set<Integer> lights, int appliedReflexions) {
 
-    private static Set<Integer> sppliterSet(String layer) {
+    private static Set<Integer> splinterSet(String layer) {
         return IntStream.range(0, layer.length())
                 .filter(i -> layer.charAt(i) == '^')
                 .boxed().collect(Collectors.toSet());
     }
 
-
     public World update(String layer) {
-        return update(sppliterSet(layer));
+        return update(splinterSet(layer));
     }
 
     private World update(Set<Integer> layer) {

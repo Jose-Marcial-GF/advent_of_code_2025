@@ -1,4 +1,4 @@
-package AoC_2025.day07.a;
+package AoC_2025.day07.b;
 
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class RangesTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(new LightEngine(short_example).getResult()).isEqualTo(21);
+        assertThat(new LightEngine(short_example).getResult()).isEqualTo(40);
     }
 
 
