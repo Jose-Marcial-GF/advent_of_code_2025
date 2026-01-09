@@ -11,9 +11,7 @@ class Parser {
     private final String operators;
     private final List<Integer> numbers;
     public static Parser of(String sum) {
-        List<Integer> numbers = numbers(sum);
-        String operators = operators(sum);
-        return new Parser(numbers, operators);
+        return new Parser(numbers(sum), operators(sum));
     }
 
     private static String operators(String sum) {
@@ -23,11 +21,10 @@ class Parser {
     }
 
     private static List<Integer> numbers(String sum) {
-        return Arrays.stream(sum.split("\n")).
+        return Arrays.stream(sum.split("\\s")).
                 takeWhile(s -> !(s.contains("+") || s.contains("*")))
-                .flatMap(s -> Arrays.stream(s.split(" "))
-                        .map(Parser::toInt)
-                        .flatMap(Optional::stream)).toList();
+                .map(Parser::toInt)
+                .flatMap(Optional::stream).toList();
     }
 
     private static Optional<Integer> toInt(String s) {
@@ -44,6 +41,7 @@ class Parser {
 
         return IntStream.range(0, operators.length())
                 .mapToLong(this::calculateColumn)
+                .peek(System.out::println)
                 .sum();
     }
 
