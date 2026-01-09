@@ -1,6 +1,7 @@
-package AoC_2025.day08.a;
+package AoC_2025.day08.b;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -39,19 +40,15 @@ public class PathFinder {
     }
 
     public long solve() {
-        return getLongest(circuits());
+        return multiplayDistance(lastPath());
     }
 
-    private List<Set<Point>> circuits() {
-        return CircuitManager.with(initCircuits()).generateCircuit(generateAllPaths().limit(1000));
+    private Path lastPath() {
+        return CircuitManager.with(initCircuits()).getTheLastPath(generateAllPaths());
     }
 
-    private static long getLongest(List<Set<Point>> circuits) {
-        return circuits.stream()
-                .map(Set::size)
-                .sorted(Comparator.reverseOrder())
-                .limit(3)
-                .reduce(1 ,(a, b) -> a * b);
+    private static long multiplayDistance(Path path) {
+        return (long) path.start().x() * path.end().x();
     }
 
     private ArrayList<Set<Point>> initCircuits() {

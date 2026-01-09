@@ -1,4 +1,4 @@
-package AoC_2025.day08.a;
+package AoC_2025.day08.b;
 
 
 
@@ -7,8 +7,6 @@ package AoC_2025.day08.a;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

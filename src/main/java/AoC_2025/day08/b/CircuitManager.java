@@ -1,4 +1,4 @@
-package AoC_2025.day08.a;
+package AoC_2025.day08.b;
 
 import java.util.List;
 import java.util.Set;
@@ -12,17 +12,19 @@ public class CircuitManager {
     private CircuitManager(List<Set<Point>> circuits) {
         this.circuits = circuits;
     }
-
+    
     public static CircuitManager with(List<Set<Point>> circuits){
         return new CircuitManager(circuits);
     }
 
-    public List<Set<Point>> generateCircuit(Stream<Path> limit) {
-        limit.forEach(this::mergeCircuits);
-        return circuits;
+    public Path getTheLastPath(Stream<Path> paths) {
+        return paths.filter(this::isTheLastUnion).findFirst().orElse(null);
     }
 
-
+    private boolean isTheLastUnion(Path path) {
+            mergeCircuits(path);
+            return circuits.size() == 1;
+    }
 
     private void mergeCircuits(Path path) {
         mergeCircuits(circuitWith(path.start()), circuitWith(path.end()));
@@ -33,7 +35,6 @@ public class CircuitManager {
         circuit1.addAll(circuit2);
         circuits.remove(circuit2);
     }
-
 
     private Set<Point> circuitWith(Point p) {
         return circuits.stream().filter(circuit -> circuit.contains(p)).findFirst().orElse(null);

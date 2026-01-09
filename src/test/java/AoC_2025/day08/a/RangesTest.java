@@ -2,9 +2,6 @@ package AoC_2025.day08.a;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RangesTest {
@@ -33,7 +30,7 @@ public class RangesTest {
 
     @Test
     public void should_solve_example_case() {
-        System.out.println(PathFinder.with(short_example).solve(1000));
+        assertThat(PathFinder.with(short_example).solve()).isEqualTo(20);
     }
 
 
