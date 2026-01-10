@@ -1,7 +1,6 @@
 package AoC_2025.day05.b;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 public class RangeList {
     private List<Range> ranges;
