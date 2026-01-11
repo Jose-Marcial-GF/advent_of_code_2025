@@ -10,11 +10,11 @@ public record DialBuilder(Stream<String> orders) {
     }
 
     static int updateCount(int position, Dial dial) {
-        return dial.count() + timesInZero(position, dial);
+        return dial.count() + timesInZero(position, dial.position());
     }
 
-    private static int timesInZero(int position, Dial dial) {
-        if (position * dial.position() < 0) return Math.abs(position) / 100 + 1;
+    private static int timesInZero(int position, int oldPosition) {
+        if (position < 0) return Math.abs(position) / 100 + (oldPosition == 0 ? 0 : 1);
         if (position == 0) return 1;
         return position / 100;
     }
