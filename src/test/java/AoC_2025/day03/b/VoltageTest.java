@@ -11,13 +11,15 @@ public class VoltageTest {
             "234234234234278\n" +
             "818181911112111\n";
 
+
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(173065202451341L);
+    }
+
     @Test
     public void should_give_the_biggest_voltage() {
-    assertThat(BatteryBuilder.length(12).with("987654321111111")).isEqualTo(987654321111L);
-    assertThat(BatteryBuilder.length(12).with("81111111111119")).isEqualTo(811111111119L);
-    assertThat(BatteryBuilder.length(12).with("234234234234278")).isEqualTo(434234234278L);
-    assertThat(BatteryBuilder.length(12).with("818181911112111")).isEqualTo(888911112111L);
-    assertThat(BatteryBuilder.length(12).with(large_test)).isEqualTo(3121910778619L);
+    assertThat(BatteryBuilder.lookingFor(12).from(large_test).sum()).isEqualTo(3121910778619L);
     }
 
 }

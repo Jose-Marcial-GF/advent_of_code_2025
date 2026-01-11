@@ -13,7 +13,7 @@ public class Main {
         return Path.of("src/main/resources/puzzle_input_day_3.txt");
     }
 
-    private static Stream<String> getPuzzleInput(){
+    private static Stream<String> voltages(){
         try {
             return Files.lines(getPath());
         } catch (IOException e) {
@@ -21,12 +21,7 @@ public class Main {
         }
     }
 
-    private static String voltages() {
-        return getPuzzleInput().collect(Collectors.joining("\n"));
-    }
-
-    static void main() {
-        BatteryBuilder length = BatteryBuilder.length(12);
-        System.out.println(length.with(voltages()));
+    static Long main() {
+        return BatteryBuilder.lookingFor(12).from(voltages()).sum();
     }
 }

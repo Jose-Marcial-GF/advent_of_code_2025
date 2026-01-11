@@ -1,49 +1,74 @@
 package AoC_2025.day03.a;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
-class BatteryBuilder {
+public record BatteryBuilder(int targetLength) {
 
-    private BatteryBuilder() {
+    public static BatteryBuilder lookingFor(int length) {
+        return new BatteryBuilder(length);
     }
 
-    public static int with(String voltages) {
-        return Arrays.stream(voltages.split("\n")).map(Battery::new).mapToInt(Battery::getVoltage).sum();
+    public LongStream from(Stream<String> voltages) {
+        return voltages
+                .map(this::createBattery)
+                .mapToLong(Battery::value);
     }
 
+    private Battery createBattery(String voltageLine) {
+        return new Battery(voltageLine, targetLength);
+    }
 
-    static class Battery {
-        private final String voltage;
+    record Battery(String source, int length) {
 
-        Battery(String voltage) {
-            this.voltage = extracted(voltage);
+        public long value() {
+            return Long.parseLong(findMaxSequence());
         }
 
-        private String extracted(String voltages) {
-            int initialIndex = 0;
-            StringBuilder stringBuilder = new StringBuilder();
-            int length = 2;
-            for (int i = 0; i < length; i++) {
-                String number = String.valueOf(getMax(initialIndex, voltages.length()-length+1+i, voltages));
-                initialIndex = getMaxIndex(voltages, number) +1;
-                stringBuilder.append(number);
-            }
-            return stringBuilder.toString();
+        private String findMaxSequence() {
+            return IntStream.range(0, length)
+                    .boxed()
+                    .reduce(
+                            SearchState.start(),
+                            (state, digitPosition) -> state.nextDigit(source, length - 1 - digitPosition), // Acumulador
+                            (oldState, newState) -> newState
+                    )
+                    .result();
+        }
+    }
+
+    record SearchState(int currentIndex, String result) {
+
+        static SearchState start() {
+            return new SearchState(0, "");
         }
 
-        private int getMax(int initialIndex, int lastIndex, String voltages) {
-            return Character.getNumericValue(getMax(voltages.substring(initialIndex, lastIndex)));
+        private SearchState nextDigit(String source, int remainingDigitsNeeded) {
+
+            return new SearchState(newIndex(source, remainingDigitsNeeded), result + getMaxDigit(source, remainingDigitsNeeded));
         }
 
-        private int getMaxIndex(String substring, String number) {
-            return substring.indexOf(number);
+        private int newIndex(String source, int remainingDigitsNeeded) {
+            return currentIndex + getIndexOfMaxDigit(source, remainingDigitsNeeded) + 1;
         }
 
-        private static int getMax(String substring) {
-            return substring.chars().reduce(0, Math::max);
+        private int getIndexOfMaxDigit(String source, int remainingDigitsNeeded) {
+            return searchWindow(source, remainingDigitsNeeded).indexOf(getMaxDigit(source, remainingDigitsNeeded));
         }
 
-         public int getVoltage() {
-             return Integer.parseInt(voltage);
-         }
-     }}
+        private char getMaxDigit(String source, int remainingDigitsNeeded) {
+            return findMaxChar(searchWindow(source, remainingDigitsNeeded));
+        }
+
+        private String searchWindow(String source, int remainingDigitsNeeded) {
+            return source.substring(currentIndex, source.length() - remainingDigitsNeeded);
+        }
+
+        private char findMaxChar(String window) {
+            return (char) window.chars()
+                    .max()
+                    .orElse('0');
+        }
+    }
+}

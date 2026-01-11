@@ -4,11 +4,11 @@
 Solución diseñada bajo los principios de **Ingeniería del Software II** en la ULPGC priorizando
 la robustez arquitectónica y la legibilidad sobre la implementación directa.
 
-### 1. Calidad del Código: Orientación Funcional
+### 1. Orientación Funcional
 El problema de este día se presta mucho al uso de **Streams, funciones lambdas y Method Reference**. Logrando así una 
 mejor comprensión del código reduciendo la complejidad ciclomática a 0.
 
-### 2. Principios de Diseño: SRP (Single Responsibility Principle)
+### 2.Principios de Diseño SRP
 Se para aplicar el **Principio de Responsabilidad Única** se ha desacoplando el problema en tres capas especializadas:
 * **`Main`:** Se limita a la lectura del sistema de ficheros.
 * **`IdChecker`:** Se encarga de interpretar el formato de entrada y coordinar la validación.

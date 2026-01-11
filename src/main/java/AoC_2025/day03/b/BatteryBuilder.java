@@ -2,70 +2,73 @@ package AoC_2025.day03.b;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
-class BatteryBuilder {
+public record BatteryBuilder(int targetLength) {
 
-    private final int length;
-    private BatteryBuilder(int length) {
-        this.length = length;
-    }
-
-    public static BatteryBuilder length(int length) {
+    public static BatteryBuilder lookingFor(int length) {
         return new BatteryBuilder(length);
     }
 
-
-    public Long with(String voltages) {
-        return Arrays.stream(voltages.split("\n")).map(this::buildBattery).mapToLong(Battery::getVoltage).sum();
+    public LongStream from(Stream<String> voltages) {
+        return voltages.map(this::createBattery)
+                .mapToLong(Battery::value);
     }
 
-    private Battery buildBattery(String voltage) {
-        return new Battery(voltage, this.length);
+    private Battery createBattery(String voltageLine) {
+        return new Battery(voltageLine, targetLength);
     }
 
+    record Battery(String source, int length) {
 
-    static class Battery {
-        private final String voltage;
-        private final int length;
-        private int initialIndex;
-
-        Battery(String voltage, int length) {
-            this.length = length;
-            this.initialIndex = 0;
-            this.voltage = extracted(voltage);
+        public long value() {
+            return Long.parseLong(findMaxSequence());
         }
 
-        private String extracted(String voltages) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < length; i++) {
-                initialIndex = updateInitialIndex(voltages, i);
-                stringBuilder.append(voltages.charAt(initialIndex-1));
-            }
-            return stringBuilder.toString();
+        private String findMaxSequence() {
+            return IntStream.range(0, length)
+                    .boxed()
+                    .reduce(
+                            SearchState.start(),
+                            (state, digitPosition) -> state.nextDigit(source, length - 1 - digitPosition), // Acumulador
+                            (oldState, newState) -> newState
+                    )
+                    .result();
+        }
+    }
+
+    record SearchState(int currentIndex, String result) {
+
+        static SearchState start() {
+            return new SearchState(0, "");
         }
 
-        private int updateInitialIndex(String voltages, int i) {
-            return getMaxIndex(voltages, getNumber(voltages, i), initialIndex) + 1;
+        private SearchState nextDigit(String source, int remainingDigitsNeeded) {
+
+            return new SearchState(newIndex(source, remainingDigitsNeeded), result + getMaxDigit(source, remainingDigitsNeeded));
         }
 
-        private String getNumber(String voltages, int i) {
-            return String.valueOf(getMax(initialIndex, voltages.length() - length + 1 + i, voltages));
+        private int newIndex(String source, int remainingDigitsNeeded) {
+            return currentIndex + getIndexOfMaxDigit(source, remainingDigitsNeeded) + 1;
         }
 
-        private int getMax(int initialIndex, int lastIndex, String voltages) {
-            return Character.getNumericValue(getMax(voltages.substring(initialIndex, lastIndex)));
+        private int getIndexOfMaxDigit(String source, int remainingDigitsNeeded) {
+            return searchWindow(source, remainingDigitsNeeded).indexOf(getMaxDigit(source, remainingDigitsNeeded));
         }
 
-        private int getMaxIndex(String substring, String number, int initialIndex) {
-
-            return substring.indexOf(number, initialIndex);
+        private char getMaxDigit(String source, int remainingDigitsNeeded) {
+            return findMaxChar(searchWindow(source, remainingDigitsNeeded));
         }
 
-        private int getMax(String substring) {
-            return substring.chars().reduce(0, Math::max);
+        private String searchWindow(String source, int remainingDigitsNeeded) {
+            return source.substring(currentIndex, source.length() - remainingDigitsNeeded);
         }
 
-         public Long getVoltage() {
-             return Long.parseLong(voltage);
-         }
-     }}
+        private char findMaxChar(String window) {
+            return (char) window.chars()
+                    .max()
+                    .orElse('0');
+        }
+    }
+}
