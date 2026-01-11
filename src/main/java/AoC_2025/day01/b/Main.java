@@ -20,11 +20,11 @@ public class Main {
         }
     }
 
-    private static String Movements() {
+    private static String movements() {
         return getPuzzleInput().collect(Collectors.joining("\n"));
     }
 
-    static void main() {
-        System.out.println(DialBuilder.with(Movements()).build().count());
+    static int main() {
+        return DialBuilder.with(movements()).build().count();
     }
 }
