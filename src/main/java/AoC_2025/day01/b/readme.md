@@ -1,7 +1,7 @@
 # Advent of Code 2025 - Día 1: Secret Entrance
 
-Solución diseñada bajo los principios de **Ingeniería del Software II** en la ULPGC
-priorizando la legibilidad y la robustez arquitectónica sobre la implementación directa y la orientación a Streams (Paradigma Funcional)
+Solución diseñada bajo los principios de **Ingeniería del Software II** en la ULPGC priorizando
+la robustez arquitectónica y la legibilidad sobre la implementación directa.
 
 ## Diferencias Parte A vs Parte B
 

@@ -21,11 +21,11 @@ public class Main {
         }
     }
 
-    private static String IDs() {
+    private static String ids() {
         return getPuzzleInput().collect(Collectors.joining());
     }
 
-    static void main() {
-        System.out.println(IdChecker.getInvalidCodesSum(IDs()));
+    static Long main() {
+        return IdChecker.getInvalidCodesSum(ids());
     }
 }

@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.stream.LongStream;
 
 class IdChecker {
-    public static Long getInvalidCodesSum(String s) {
-        return Arrays.stream(s.split(",")).mapToLong(s1-> getInvalidCodes(s1.split("-")).sum()).sum();
+    public static Long getInvalidCodesSum(String ranges) {
+        return Arrays.stream(ranges.split(",")).mapToLong(range-> getInvalidCodes(range.split("-")).sum()).sum();
     }
 
-    private static LongStream getInvalidCodes(String[] split) {
-        return InvalidIdProvider.getInvalidCodes(toLong(split[0]), toLong(split[1]));
+    private static LongStream getInvalidCodes(String[] range) {
+        return InvalidIdProvider.getInvalidCodes(toLong(range[0]), toLong(range[1]));
     }
 
     private static Long toLong(String split) {
