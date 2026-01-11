@@ -20,15 +20,17 @@ public class DialTest {
             """;
 
 
-    @Test
-    public void should_move_given_a_direction() {
-        assertThat(Dial.create().move("L2").position()).isEqualTo(48);
-        assertThat(Dial.create().move("R8").position()).isEqualTo(58);
-    }
 
     @Test
-    public void should_move_given_more_than_one_direction(){
-        assertThat(Dial.create().move("L2").move("L2").position()).isEqualTo(46);
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(1165);
+    }
+
+
+    @Test
+    public void should_move_given_a_direction() {
+        assertThat(Dial.initialize().move("L2")).isEqualTo(48);
+        assertThat(Dial.initialize().move("R8")).isEqualTo(58);
     }
 
 
@@ -51,6 +53,7 @@ public class DialTest {
     public void should_count_the_zeros_given_a_large_string() {
         assertThat(DialBuilder.with(orders).build().count()).isEqualTo(3);
     }
+
 
 
 

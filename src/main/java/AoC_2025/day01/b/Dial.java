@@ -6,17 +6,17 @@ public record Dial(int position, int count) {
         this.count = count;
     }
 
-    public static Dial create() {
+    public static Dial initialize() {
         return new Dial(50, 0);
     }
 
 
-    public static Dial create(int position, int count) {
+    public static Dial initialize(int position, int count) {
         return new Dial(position, count);
     }
 
     static int makeValidate(int position) {
-        return (position + 100 + 100 * Math.max(1, Math.abs(position) / 100)) % (100);
+        return (position +100 * Math.max(1, Math.abs(position) / 100)) % (100);
     }
 
     public int move(String directions) {

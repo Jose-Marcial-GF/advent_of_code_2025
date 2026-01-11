@@ -19,10 +19,14 @@ public class DialTest {
             L82
             """;
 
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(6496);
+    }
 
     @Test
     public void should_move_given_a_direction() {
-        assertThat(Dial.create().move("L68")).isEqualTo(-18);
+        assertThat(Dial.initialize().move("L68")).isEqualTo(-18);
         assertThat(DialBuilder.with("L68").build().position()).isEqualTo(82);
     }
 

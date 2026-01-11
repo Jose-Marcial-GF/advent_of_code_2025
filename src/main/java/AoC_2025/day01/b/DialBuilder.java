@@ -9,23 +9,23 @@ public record DialBuilder(Stream<String> orders) {
         return new DialBuilder(Arrays.stream(orders.split("\n")));
     }
 
+
+    public Dial build() {
+        return orders.reduce(Dial.initialize(), DialBuilder::createNewDial, (a, b) -> b);
+    }
+
+    private static Dial createNewDial(Dial dial, String s) {
+        return Dial.initialize(dial.move(s), updateCount(dial.move(s), dial));
+    }
+
     static int updateCount(int position, Dial dial) {
         return dial.count() + timesInZero(position, dial.position());
     }
 
     private static int timesInZero(int position, int oldPosition) {
-        if (position < 0) return Math.abs(position) / 100 + (oldPosition == 0 ? 0 : 1);
         if (position == 0) return 1;
+        if (position < 0) return Math.abs(position) / 100 + (oldPosition == 0 ? 0 : 1);
         return position / 100;
-    }
-
-    public Dial build() {
-        return orders.reduce(Dial.create(), DialBuilder::getDial, (a, b) -> b);
-    }
-
-    private static Dial getDial(Dial dial, String s) {
-
-        return Dial.create(dial.move(s), updateCount(dial.move(s), dial));
     }
 
 }
