@@ -15,9 +15,14 @@ public class RollsOfPaperTest {
             "@.@@@.@@@@\n" +
             ".@@@@@@@@.\n" +
             "@.@.@@@.@.";
+
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(1626);
+    }
     @Test
     public void detect_the_four_rolls_of_paper_arrows_of_13() {
 
-        assertThat(Grid.of(short_example_test).detectFewer(4)).isEqualTo(13);
+        assertThat(Grid.of(short_example_test.lines()).detectFewer(4)).isEqualTo(13);
     }
 }

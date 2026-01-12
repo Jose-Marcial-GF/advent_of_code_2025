@@ -17,9 +17,14 @@ public class RollsOfPaperTest {
             "@.@@@.@@@@\n" +
             ".@@@@@@@@.\n" +
             "@.@.@@@.@.";
+
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(9173);
+    }
     @Test
     public void detect_the_four_rolls_of_paper_arrows_of_13() {
-        long sum = Stream.iterate(Grid.of(short_example_test), g -> Grid.of(g.getGrid())).mapToLong(Grid::detectFewer)
+        long sum = Stream.iterate(Grid.of(short_example_test.lines()), g -> Grid.of(g.grid())).mapToLong(g-> g.detectFewer(4))
                 .takeWhile(rollsDetected -> rollsDetected > 0)
                 .sum();
         assertThat(sum).isEqualTo(43L);

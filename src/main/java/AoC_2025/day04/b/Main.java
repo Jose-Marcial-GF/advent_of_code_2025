@@ -14,7 +14,7 @@ public class Main {
         return Path.of("src/main/resources/puzzle_input_day_4.txt");
     }
 
-    private static Stream<String> getPuzzleInput(){
+    private static Stream<String> rolls(){
         try {
             return Files.lines(getPath());
         } catch (IOException e) {
@@ -22,15 +22,9 @@ public class Main {
         }
     }
 
-    private static String grid() {
-        return getPuzzleInput().collect(Collectors.joining("\n"));
-    }
 
-    static void main() {
-        System.out.println(
-                Stream.iterate(Grid.of(grid()), g -> Grid.of(g.getGrid())).mapToLong(Grid::detectFewer)
-                .takeWhile(rollsDetected -> rollsDetected > 0)
-                .sum()
-        );
+    static Long main() {
+        return Stream.iterate(Grid.of(rolls()), g -> Grid.of(g.grid())).mapToLong(g -> g.detectFewer(4))
+                .takeWhile(rollsDetected -> rollsDetected > 0).sum();
     }
 }

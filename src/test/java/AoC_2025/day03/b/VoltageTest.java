@@ -19,7 +19,7 @@ public class VoltageTest {
 
     @Test
     public void should_give_the_biggest_voltage() {
-    assertThat(BatteryBuilder.lookingFor(12).from(large_test).sum()).isEqualTo(3121910778619L);
+    assertThat(BatteryBuilder.lookingFor(12).from(large_test.lines()).sum()).isEqualTo(3121910778619L);
     }
 
 }

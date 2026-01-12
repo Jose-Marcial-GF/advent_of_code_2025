@@ -4,7 +4,6 @@ package AoC_2025.day04.a;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -13,7 +12,7 @@ public class Main {
         return Path.of("src/main/resources/puzzle_input_day_4.txt");
     }
 
-    private static Stream<String> getPuzzleInput(){
+    private static Stream<String> rolls(){
         try {
             return Files.lines(getPath());
         } catch (IOException e) {
@@ -21,11 +20,7 @@ public class Main {
         }
     }
 
-    private static String grid() {
-        return getPuzzleInput().collect(Collectors.joining("\n"));
-    }
-
-    static void main() {
-        System.out.println(Grid.of(grid()).detectFewer(4));
+    static Long main() {
+        return Grid.of(rolls()).detectFewer(4);
     }
 }
