@@ -31,7 +31,7 @@ public record BatteryBuilder(int targetLength) {
                     .boxed()
                     .reduce(
                             SearchState.start(),
-                            (state, digitPosition) -> state.nextDigit(source, length - 1 - digitPosition), // Acumulador
+                            (state, digitPosition) -> state.nextDigit(source, length - 1 - digitPosition),
                             (oldState, newState) -> newState
                     )
                     .result();
