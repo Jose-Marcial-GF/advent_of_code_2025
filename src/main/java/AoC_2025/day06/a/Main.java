@@ -26,7 +26,7 @@ public class Main {
             return getPuzzleInput().collect(Collectors.joining("\n"));
         }
 
-        static void main() {
-            System.out.println(Parser.of(problem()).operate());
+        static long main() {
+            return Solver.with(MathWorkSheet.of(problem())).calculateTotal();
         }
     }

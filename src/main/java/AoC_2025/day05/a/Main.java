@@ -25,7 +25,7 @@ public class Main {
             return getPuzzleInput().collect(Collectors.joining("\n"));
         }
 
-        static void main() {
-            System.out.println(InventorySystem.solve(problem()));
+        static Long main() {
+            return InventorySystem.solve(problem());
         }
     }

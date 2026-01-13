@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RangesTest {
+public class MathWorkSheetSolverTest {
     private final String short_example = """
 123 328  51 64 \n
  45 64  387 23 \n
@@ -16,10 +16,16 @@ public class RangesTest {
 98          314 
 +    +   +""";
 
+
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(5524274308182L);
+    }
+
     @Test
     public void should_solve_example_case() {
-        assertThat(Parser.of(sum).operate()).isEqualTo(891);
-        assertThat(Parser.of(short_example).operate()).isEqualTo(4277556);
+        assertThat(Solver.with(MathWorkSheet.of(sum)).calculateTotal()).isEqualTo(891);
+        assertThat(Solver.with(MathWorkSheet.of(short_example)).calculateTotal()).isEqualTo(4277556);
     }
 
 

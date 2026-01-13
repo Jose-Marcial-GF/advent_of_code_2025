@@ -3,13 +3,13 @@ package AoC_2025.day05.a;
 import java.util.List;
 
 public record Range(Long from, Long to) {
-    private Range merge(Range range2) {
-        return new Range(Math.min(range2.from, this.from), Math.max(range2.to, this.to));
+    private Range merge(Range range) {
+        return new Range(Math.min(range.from, this.from), Math.max(range.to, this.to));
 
     }
 
-    public boolean isMergeable(Range range2) {
-        return this.isMergeable(range2.to) || this.isMergeable(range2.from);
+    public boolean isMergeable(Range range) {
+        return this.isMergeable(range.to) || this.isMergeable(range.from);
     }
 
     private boolean isMergeable(Long number) {
