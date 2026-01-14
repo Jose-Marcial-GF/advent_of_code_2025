@@ -33,3 +33,6 @@ El cambio de requisitos entre la Parte A y la Parte B puso a prueba la flexibili
 3.  **Sustitución:** Se implementó un nuevo motor analítico (`Solver`) específico para el problema de paridad, sustituyendo al motor de búsqueda original sin afectar a los componentes de dominio.
 
 ---
+
+> La idea del algoritmo implementado para la resolución del apartado b no fue idea mía, la encontré en 
+> https://www.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory

@@ -18,7 +18,7 @@ Se ha priorizado la legibilidad y la mantenibilidad sobre la micro-optimización
     * *Aplicación:* `Solver`, `PathFinder`, `...` (Coordinación y algoritmos).
 * **Open/Closed:** El diseño permite extender la funcionalidad (ej: nuevas reglas en la Parte B) sin modificar las clases base del dominio, utilizando composición y herencia de records.
 
-### 2. Paradigma Funcional y Java Streams
+### 2. Paradigma Funcional yb Java Streams
 Para reducir la **Complejidad Ciclomática** y los efectos secundarios, se ha adoptado un estilo declarativo:
 * **Inmutabilidad:** Uso casi exclusivo de `Java Records` para garantizar la integridad de los datos en algoritmos recursivos.
 * **Streams API:** Sustitución de estructuras de control imperativas (`for`, `while`, `if` anidados) por `Streams` de datos y aplicando metodos como `filter`, `map`, `reduce` `...`, haciendo el código más legible que facilite la abtracción y menos propenso a errores.
@@ -38,4 +38,110 @@ Se a utilizado a la ia para los siguientes procesos:
 * Al iniciar el proyecto la usé para descubrir formas de usar los Streams pues no tenia experiencia. Con la adquisición de experiencia se ha usado para corroborar la formulación de algunos streams más complejos.
 
 ---
+
+## 📂 Soluciones por Día
+
+### 🔐 Día 1: Secret Entrance
+**Parte A:** Circular dial con aritmética modular
+📑 [Documentación](./doc/day01a.md) | 💾 [Código](./src/main/java/AoC_2025/day01/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day01/a)
+
+**Parte B:** Detección de cruces por cero
+📑 [Documentación](./doc/day01b.md) | 💾 [Código](./src/main/java/AoC_2025/day01/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day01/b)
+
+---
+
+### 🛂 Día 2: ID Classification
+**Parte A:** Validación de IDs con rangos
+📑 [Documentación](./doc/day02a.md) | 💾 [Código](./src/main/java/AoC_2025/day02/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day02/a)
+
+**Parte B:** Sistema de clasificación extendido
+📑 [Documentación](./doc/day02b.md) | 💾 [Código](./src/main/java/AoC_2025/day02/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day02/b)
+
+---
+
+### 🔋 Día 3: Battery Maximization
+**Parte A:** Algoritmo greedy para selección de dígitos
+📑 [Documentación](./doc/day03a.md) | 💾 [Código](./src/main/java/AoC_2025/day03/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day03/a)
+
+**Parte B:** Optimización de baterías
+📑 [Documentación](./doc/day03b.md) | 💾 [Código](./src/main/java/AoC_2025/day03/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day03/b)
+
+---
+
+### 🖨️ Día 4: Printing Department
+**Parte A:** Grid 2D con búsqueda de 8 vecinos
+📑 [Documentación](./doc/day04a.md) | 💾 [Código](./src/main/java/AoC_2025/day04/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day04/a)
+
+**Parte B:** Procesamiento de grid extendido
+📑 [Documentación](./doc/day04b.md) | 💾 [Código](./src/main/java/AoC_2025/day04/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day04/b)
+
+---
+
+### 📦 Día 5: Inventory Management
+**Parte A:** Verificación de rangos con enum-based status
+📑 [Documentación](./doc/day05a.md) | 💾 [Código](./src/main/java/AoC_2025/day05/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day05/a)
+
+**Parte B:** Gestión de inventario extendida
+📑 [Documentación](./doc/day05b.md) | 💾 [Código](./src/main/java/AoC_2025/day05/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day05/b)
+
+---
+
+### 🐙 Día 6: Cephalopod Math Calculator
+**Parte A:** Strategy Pattern con interfaz `OperatorList`
+📑 [Documentación](./doc/day06a.md) | 💾 [Código](./src/main/java/AoC_2025/day06/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day06/a)
+
+**Parte B:** Calculadora con operadores múltiples
+📑 [Documentación](./doc/day06b.md) | 💾 [Código](./src/main/java/AoC_2025/day06/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day06/b)
+
+---
+
+### 🔦 Día 7: Beam Management
+**Parte A:** Patrón Singleton para gestión de beams
+📑 [Documentación](./doc/day07a.md) | 💾 [Código](./src/main/java/AoC_2025/day07/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day07/a)
+
+**Parte B:** Sistema de beams extendido
+📑 [Documentación](./doc/day07b.md) | 💾 [Código](./src/main/java/AoC_2025/day07/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day07/b)
+
+---
+
+### 🎀 Día 8: Christmas Decorations
+**Parte A:** Coordenadas 3D con selección greedy de pares
+📑 [Documentación](./doc/day08a.md) | 💾 [Código](./src/main/java/AoC_2025/day08/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day08/a)
+
+**Parte B:** Gestión de circuitos de decoraciones
+📑 [Documentación](./doc/day08b.md) | 💾 [Código](./src/main/java/AoC_2025/day08/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day08/b)
+
+---
+
+### 🧩 Día 9: Tiles Manager
+**Parte A:** Cálculo de área de rectángulos con `flatMap`
+📑 [Documentación](./doc/day09a.md) | 💾 [Código](./src/main/java/AoC_2025/day09/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day09/a)
+
+**Parte B:** Procesamiento geométrico extendido
+📑 [Documentación](./doc/day09b.md) | 💾 [Código](./src/main/java/AoC_2025/day09/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day09/b)
+
+---
+
+### ⚡ Día 10: Circuit Breaker & Joltage
+**Parte A:** BFS recursivo con representación de estado inmutable
+📑 [Documentación](./doc/day10a.md) | 💾 [Código](./src/main/java/AoC_2025/day10/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day10/a)
+
+**Parte B:** Divide & Conquer con reducción de paridad (Matemática Discreta)
+📑 [Documentación](./doc/day10b.md) | 💾 [Código](./src/main/java/AoC_2025/day10/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day10/b)
+
+---
+
+### 🏭 Día 11: Factory Maintenance
+**Parte A:** Graph Traversal con validación simple
+📑 [Documentación](./doc/day11a.md) | 💾 [Código](./src/main/java/AoC_2025/day11/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day11/a)
+
+**Parte B:** DP con State Pattern y claves compuestas
+📑 [Documentación](./doc/day11b.md) | 💾 [Código](./src/main/java/AoC_2025/day11/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day11/b)
+
+---
+
+### 🎄 Día 12: Christmas Tree Farm
+**Parte A:** Backtracking con heurística "Largest Area First"
+📑 [Documentación](./doc/day12a.md) | 💾 [Código](./src/main/java/AoC_2025/day12/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day12/a)
+
 *Proyecto realizado como parte de la asignatura de Ingeniería del Software II - ULPGC.*
