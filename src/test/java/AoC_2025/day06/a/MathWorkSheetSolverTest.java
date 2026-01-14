@@ -24,8 +24,8 @@ public class MathWorkSheetSolverTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(Solver.with(MathWorkSheet.of(sum)).calculateTotal()).isEqualTo(891);
-        assertThat(Solver.with(MathWorkSheet.of(short_example)).calculateTotal()).isEqualTo(4277556);
+        assertThat(HorizontalCalculator.with(HorizontalMathWorkSheet.of(sum)).calculateTotal()).isEqualTo(891);
+        assertThat(HorizontalCalculator.with(HorizontalMathWorkSheet.of(short_example)).calculateTotal()).isEqualTo(4277556);
     }
 
 

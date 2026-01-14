@@ -1,11 +1,14 @@
 package AoC_2025.day06.b;
 
+import AoC_2025.day06.architecture.Calculator;
+import AoC_2025.day06.architecture.Sheet;
+
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
-public record Solver(MathWorkSheet sheet) {
-    public static Solver with(MathWorkSheet sheet){
-        return new Solver(sheet);
+public record VerticalCalculator(VerticalMathWorkSheet sheet) implements Calculator {
+    public static Calculator with(Sheet sheet){
+        return new VerticalCalculator((VerticalMathWorkSheet) sheet);
     }
 
     public long calculateTotal() {
@@ -27,4 +30,5 @@ public record Solver(MathWorkSheet sheet) {
     private int currentIndex(int colIndex) {
         return sheet.bounds().stream().limit(colIndex).mapToInt(Integer::intValue).sum();
     }
+
 }

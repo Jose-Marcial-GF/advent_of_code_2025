@@ -1,15 +1,17 @@
 package AoC_2025.day06.a;
 
 
+import AoC_2025.day06.architecture.Sheet;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public record MathWorkSheet(List<Integer> numbers, String operators) {
+public record HorizontalMathWorkSheet(List<Long> numbers, String operators) implements Sheet {
 
-    public static MathWorkSheet of(String rawInput) {
-        return new MathWorkSheet(parseNumbers(rawInput), parseOperators(rawInput));
+    public static Sheet of(String rawInput) {
+        return new HorizontalMathWorkSheet(parseNumbers(rawInput), parseOperators(rawInput));
     }
 
     private static String parseOperators(String input) {
@@ -19,10 +21,10 @@ public record MathWorkSheet(List<Integer> numbers, String operators) {
                 .collect(Collectors.joining());
     }
 
-    private static List<Integer> parseNumbers(String input) {
+    private static List<Long> parseNumbers(String input) {
         return Arrays.stream(input.split("\\s"))
-                .takeWhile(MathWorkSheet::isNotOperator)
-                .map(MathWorkSheet::parseNumber)
+                .takeWhile(HorizontalMathWorkSheet::isNotOperator)
+                .map(HorizontalMathWorkSheet::parseNumber)
                 .flatMap(Optional::stream)
                 .toList();
     }
@@ -31,11 +33,12 @@ public record MathWorkSheet(List<Integer> numbers, String operators) {
         return !(s.contains("+") || s.contains("*"));
     }
 
-    private static Optional<Integer> parseNumber(String s) {
+    private static Optional<Long> parseNumber(String s) {
         return Optional.of(s)
                 .filter(str -> !str.isBlank())
-                .map(Integer::parseInt);
+                .map(Long::parseLong);
     }
+
 
 
 }

@@ -1,13 +1,15 @@
 package AoC_2025.day06.b;
 
+import AoC_2025.day06.architecture.Sheet;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public record MathWorkSheet(List<Long> numbers, String operators, List<Integer> bounds) {
-    public static MathWorkSheet of(String input) {
+public record VerticalMathWorkSheet(List<Long> numbers, String operators, List<Integer> bounds) implements Sheet {
+    public static VerticalMathWorkSheet of(String input) {
 
         List<Long> numbers = listToLong(numbers(input.split("\n")));
         String operators = operators(input);
@@ -15,7 +17,7 @@ public record MathWorkSheet(List<Long> numbers, String operators, List<Integer> 
                 .map(String::length)
                 .toList();
 
-        return new MathWorkSheet(numbers, operators, bounds);
+        return new VerticalMathWorkSheet(numbers, operators, bounds);
     }
 
     private static List<Long> listToLong(List<String> lines) {

@@ -2,10 +2,11 @@ package AoC_2025.day06.b;
 
 
 
+import AoC_2025.day06.architecture.Solver;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -22,12 +23,8 @@ public class Main {
             }
         }
 
-        private static String problem() {
-            return getPuzzleInput().collect(Collectors.joining("\n"));
-        }
 
         static long main() {
-            return Solver.with(MathWorkSheet.of(problem())).calculateTotal();
-
+            return Solver.using(VerticalMathWorkSheet::of, VerticalCalculator::with, getPuzzleInput()).solveB();
         }
     }

@@ -1,15 +1,18 @@
 package AoC_2025.day06.a;
 
+import AoC_2025.day06.architecture.Calculator;
+import AoC_2025.day06.architecture.Sheet;
+
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
-public record Solver(MathWorkSheet sheet){
+public record HorizontalCalculator(Sheet sheet) implements Calculator {
 
-    public static Solver with (MathWorkSheet sheet){
-        return new Solver(sheet);
+    public  static Calculator with (Sheet sheet){
+        return new HorizontalCalculator(sheet);
     }
 
-
+    @Override
     public long calculateTotal() {
         return IntStream.range(0, width())
                 .mapToLong(this::solveColumn)
@@ -34,4 +37,5 @@ public record Solver(MathWorkSheet sheet){
     private int width() {
         return sheet.operators().length();
     }
+
 }

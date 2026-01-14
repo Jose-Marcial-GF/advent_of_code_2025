@@ -2,6 +2,8 @@ package AoC_2025.day06.a;
 
 
 
+import AoC_2025.day06.architecture.Solver;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +29,6 @@ public class Main {
         }
 
         static long main() {
-            return Solver.with(MathWorkSheet.of(problem())).calculateTotal();
+            return Solver.using(HorizontalMathWorkSheet::of, HorizontalCalculator::with, getPuzzleInput()).solveA();
         }
     }
