@@ -1,5 +1,6 @@
 package AoC_2025.day05.a;
 
+import AoC_2025.day05.architecture.InventorySystem;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +27,7 @@ public class RangesTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(InventorySystem.solve(input)).isEqualTo(3);
+        assertThat(InventorySystem.with(input.lines()).solveA()).isEqualTo(3);
     }
 }
 

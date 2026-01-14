@@ -1,7 +1,6 @@
-package AoC_2025.day05.b;
+package AoC_2025.day05.architecture;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public record RangeList(List<Range> ranges) {
 
@@ -20,20 +19,8 @@ public record RangeList(List<Range> ranges) {
         list.addAll(list.removeLast().mergeOrConcat(nextRange));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        RangeList otherRangeList = (RangeList) other;
-        return this.size() == otherRangeList.size() &&
-                IntStream.range(0, this.size())
-                        .allMatch(i -> this.get(i).equals(otherRangeList.get(i)));
-    }
-
     public Range get(int i) {
         return this.ranges.get(i);
-    }
-
-    private int size() {
-        return ranges.size();
     }
 
     public boolean contains(Long num) {
