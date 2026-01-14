@@ -1,10 +1,12 @@
 package AoC_2025.day02.b;
 
 
+
+import AoC_2025.day02.architecture.IdChecker;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -21,11 +23,7 @@ public class Main {
         }
     }
 
-    private static String ids() {
-        return getPuzzleInput().collect(Collectors.joining());
-    }
-
     static Long main() {
-        return IdChecker.getInvalidCodesSum(ids());
+        return IdChecker.with(getPuzzleInput()).solveB();
     }
 }

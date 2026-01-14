@@ -13,7 +13,7 @@ public record DialBuilder (Stream<String> orders) implements Solver.SolverA {
     }
 
     private Dial build() {
-        return orders.reduce(Dial.initialize(), DialBuilder::createNewDial, (a, b) -> b);
+        return orders.reduce(Dial.initialize(), DialBuilder::createNewDial, (_, b) -> b);
     }
 
     private static Dial createNewDial(Dial dial, String s) {
