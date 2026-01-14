@@ -2,10 +2,11 @@ package AoC_2025.day04.b;
 
 
 
+import AoC_2025.day04.architecture.Grid;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -24,7 +25,6 @@ public class Main {
 
 
     static Long main() {
-        return Stream.iterate(Grid.of(rolls()), g -> Grid.of(g.grid())).mapToLong(g -> g.detectFewer(4))
-                .takeWhile(rollsDetected -> rollsDetected > 0).sum();
+        return Grid.of(rolls()).solveB();
     }
 }

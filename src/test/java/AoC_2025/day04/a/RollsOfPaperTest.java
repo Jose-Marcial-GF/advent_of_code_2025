@@ -1,5 +1,6 @@
 package AoC_2025.day04.a;
 
+import AoC_2025.day04.architecture.Grid;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +24,6 @@ public class RollsOfPaperTest {
     @Test
     public void detect_the_four_rolls_of_paper_arrows_of_13() {
 
-        assertThat(Grid.of(short_example_test.lines()).detectFewer(4)).isEqualTo(13);
+        assertThat(Grid.of(short_example_test.lines()).solveA()).isEqualTo(13);
     }
 }

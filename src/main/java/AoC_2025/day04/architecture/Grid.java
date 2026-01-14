@@ -1,10 +1,12 @@
-package AoC_2025.day04.a;
+package AoC_2025.day04.architecture;
+
+import AoC_2025.Solver;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public record Grid(char[][] grid, int delimitator) {
+public record Grid(char[][] grid, int delimitator) implements Solver.SolverA, Solver.SolverB {
 
     public static Grid of(Stream<String> grid) {
         return new Grid(toCharArray(grid), '@');
@@ -14,10 +16,16 @@ public record Grid(char[][] grid, int delimitator) {
         return grid.map(String::toCharArray).toArray(char[][]::new);
     }
 
-    public long detectFewer(int bound) {
-        return IntStream.range(0, grid.length * grid[0].length).filter(this::isRoll).filter(roll -> neighbors(roll) <= bound).count();
+    public static Grid of(char[][] grid) {
+        return new Grid(grid, '@');
     }
 
+    public IntStream detectFewer(int bound) {
+        return IntStream.range(0, grid.length * grid[0].length).filter(this::isRoll).filter(roll -> neighbors(roll) <= bound);
+    }
+    private void removeRolls(int roll) {
+        grid[rowOf(roll)][columnOf(roll)] = '.';
+    }
     private boolean isRoll(int indexOfChar) {
         return grid[rowOf(indexOfChar)][columnOf(indexOfChar)] == '@';
     }
@@ -56,5 +64,16 @@ public record Grid(char[][] grid, int delimitator) {
 
     private int isValue(int b) {
         return b == delimitator ? 1 : 0;
+    }
+
+    @Override
+    public long solveA() {
+        return detectFewer(4).count();
+    }
+
+    @Override
+    public long solveB() {
+        return Stream.iterate(Grid.of(grid), g -> Grid.of(g.grid())).mapToLong(g -> g.detectFewer(4).peek(this::removeRolls).count())
+                .takeWhile(rollsDetected -> rollsDetected > 0).sum();
     }
 }

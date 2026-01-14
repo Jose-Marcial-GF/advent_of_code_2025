@@ -1,6 +1,8 @@
 package AoC_2025.day04.a;
 
 
+import AoC_2025.day04.architecture.Grid;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,6 +23,6 @@ public class Main {
     }
 
     static Long main() {
-        return Grid.of(rolls()).detectFewer(4);
+        return Grid.of(rolls()).solveA();
     }
 }
