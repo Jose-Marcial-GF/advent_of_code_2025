@@ -13,4 +13,4 @@ Tanto en `MathWorkSheet` como en `Solver` tienen factory methods(`of` y `with` r
 Con el fin de cumplir tener una lectura mas cómoda del código
 
 ### 3. Calidad del Código:
-* Se utiliza `flatMap(Optional::stream)` combinado con un método `parseNumber` que envuelve la conversión en un `Optional` evitando  errores y espacios vacíos de forma declarativa.
+* Se utiliza `flatMap(Optional::stream)` combinado con un método `parseNumber` que envuelve la conversión en un `Optional` para  errores y espacios vacíos de forma declarativa.

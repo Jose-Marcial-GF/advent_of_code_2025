@@ -1,27 +1,31 @@
 package AoC_2025.day07.b;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-class LightEngine {
-    private final List<String> layers;
-    private World world;
+record LightEngine(World world, List<String> layers) {
+
+    public static LightEngine build(String world) {
+        return new LightEngine(new World(getFirstLightPosition(world)), restOfLayers(world));
+    }
+
+
 
     public long getResult() {
-        layers.forEach(layer -> this.world = world.update(layer));
-        return world.getTotalTimelines();
+        return layers.stream().
+                reduce(world, World::update, (oldWorld, newWorld) -> newWorld)
+                .getTotalTimelines();
     }
 
-    LightEngine(String world) {
-        this.layers = Arrays.stream(layersOf(world)).skip(1).toList();
-        this.world = new World(getFirstLight(layersOf(world)[0]));
+    private static List<String> restOfLayers(String world) {
+        return world.lines().skip(1).toList();
     }
 
-    private static String[] layersOf(String string) {
-        return string.split("\n");
+    private static String getFirstLayer(String string) {
+        return string.lines().findFirst().orElse("");
     }
 
-    private Integer getFirstLight(String initialLine) {
-        return initialLine.indexOf('S');
+
+    private static Map<Integer, Long> getFirstLightPosition(String world) {
+        return Map.of(getFirstLayer(world).indexOf('S'), 1L);
     }
 }

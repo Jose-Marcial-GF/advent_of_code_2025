@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RangesTest {
+public class LightReflexionTest {
     private final String short_example = """
                    .......S.......
                    ...............
@@ -25,8 +25,15 @@ public class RangesTest {
     """;
 
     @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(13883459503480L);
+    }
+
+
+
+    @Test
     public void should_solve_example_case() {
-        assertThat(new LightEngine(short_example).getResult()).isEqualTo(40);
+        assertThat(LightEngine.build(short_example).getResult()).isEqualTo(40);
     }
 
 

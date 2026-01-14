@@ -1,24 +1,23 @@
 package AoC_2025.day07.b;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public record World(Map<Integer, Long> timelines) {
-    public World(int startIndex) {
-        this(new HashMap<>());
-        this.timelines.put(startIndex, 1L);
-    }
 
     public World update(String layer) {
 
         Map<Integer, Long> collect = timelines.entrySet().stream().flatMap(
-                set -> layer.charAt(set.getKey()) == '^' ? splitLight(set) : Stream.of(getPath(set)))
+                set -> splitLightIfRequire(layer, set))
                 
                 .collect(Collectors.toMap(set -> (int) set[0], set -> set[1], Long::sum));
 
         return new World(collect);
+    }
+
+    private static Stream<long[]> splitLightIfRequire(String layer, Map.Entry<Integer, Long> set) {
+        return layer.charAt(set.getKey()) == '^' ? splitLight(set) : Stream.of(getPath(set));
     }
 
     private static long[] getPath(Map.Entry<Integer, Long> set) {

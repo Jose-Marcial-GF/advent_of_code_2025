@@ -26,8 +26,8 @@ public class Main {
             return getPuzzleInput().collect(Collectors.joining("\n"));
         }
 
-        static void main() {
-            System.out.println(new LightEngine(problem()).getResult());
+        static long main() {
+            return LightEngine.build(problem()).getResult();
 
         }
     }
