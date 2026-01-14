@@ -1,23 +1,38 @@
-package AoC_2025.day03.b;
+package AoC_2025.day03.architecture;
 
-import java.util.Arrays;
+import AoC_2025.Solver;
+
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-public record BatteryBuilder(int targetLength) {
+public record BatteryBuilder(Stream<String> voltages, int targetLength) implements Solver.SolverB, Solver.SolverA {
 
-    public static BatteryBuilder lookingFor(int length) {
-        return new BatteryBuilder(length);
+    public static BatteryBuilder with(Stream<String> input){
+        return new BatteryBuilder(input, 0);
     }
 
-    public LongStream from(Stream<String> voltages) {
+    private BatteryBuilder lookingFor(int length) {
+        return new BatteryBuilder(voltages, length);
+    }
+
+    private LongStream from() {
         return voltages.map(this::createBattery)
                 .mapToLong(Battery::value);
     }
 
     private Battery createBattery(String voltageLine) {
         return new Battery(voltageLine, targetLength);
+    }
+
+    @Override
+    public long solveA() {
+        return lookingFor(2).from().sum();
+    }
+
+    @Override
+    public long solveB() {
+        return lookingFor(12).from().sum();
     }
 
     record Battery(String source, int length) {

@@ -1,5 +1,6 @@
 package AoC_2025.day03.a;
 
+import AoC_2025.day03.architecture.BatteryBuilder;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,7 @@ public class VoltageTest {
 
     @Test
     public void should_give_the_biggest_voltage() {
-    assertThat(BatteryBuilder.lookingFor(2).from(large_test.lines()).sum()).isEqualTo(357);
+    assertThat(BatteryBuilder.with(large_test.lines()).solveA()).isEqualTo(357);
     }
 
 }

@@ -1,10 +1,11 @@
 package AoC_2025.day03.b;
 
 
+import AoC_2025.day03.architecture.BatteryBuilder;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -22,6 +23,6 @@ public class Main {
     }
 
     static Long main() {
-        return BatteryBuilder.lookingFor(12).from(voltages()).sum();
+        return BatteryBuilder.with(voltages()).solveB();
     }
 }
