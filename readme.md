@@ -18,7 +18,7 @@ Se ha priorizado la legibilidad y la mantenibilidad sobre la micro-optimización
     * *Aplicación:* `Solver`, `PathFinder`, `...` (Coordinación y algoritmos).
 * **Open/Closed:** El diseño permite extender la funcionalidad (ej: nuevas reglas en la Parte B) sin modificar las clases base del dominio, utilizando composición y herencia de records.
 
-### 2. Paradigma Funcional yb Java Streams
+### 2. Paradigma Funcional y Java Streams
 Para reducir la **Complejidad Ciclomática** y los efectos secundarios, se ha adoptado un estilo declarativo:
 * **Inmutabilidad:** Uso casi exclusivo de `Java Records` para garantizar la integridad de los datos en algoritmos recursivos.
 * **Streams API:** Sustitución de estructuras de control imperativas (`for`, `while`, `if` anidados) por `Streams` de datos y aplicando metodos como `filter`, `map`, `reduce` `...`, haciendo el código más legible que facilite la abtracción y menos propenso a errores.
