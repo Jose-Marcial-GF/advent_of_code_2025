@@ -1,11 +1,13 @@
-package AoC_2025.day08.a;
+package AoC_2025.day08.architecture;
+
+import AoC_2025.Solver;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public record PathFinder(List<Point> locations) {
+public record PathFinder(List<Point> locations) implements Solver.SolverA, Solver.SolverB {
     public static PathFinder with(Stream<String> locations) {
         return new PathFinder(toPoints(locations).toList());
     }
@@ -29,10 +31,6 @@ public record PathFinder(List<Point> locations) {
 
     }
 
-    public long solve() {
-        return getLongest(circuits());
-    }
-
     private List<Set<Point>> circuits() {
         return CircuitManager.with(initialCircuits())
                              .generateCircuit(generateAllPaths().limit(1000));
@@ -53,4 +51,22 @@ public record PathFinder(List<Point> locations) {
     }
 
 
+    private Path lastPath() {
+        return CircuitManager.with(initialCircuits()).getTheLastPath(generateAllPaths());
+    }
+
+    private static long multiplayDistance(Path path) {
+        return (long) path.start().x() * path.end().x();
+    }
+
+
+    @Override
+    public long solveA() {
+        return getLongest(circuits());
+    }
+
+    @Override
+    public long solveB() {
+        return multiplayDistance(lastPath());
+    }
 }

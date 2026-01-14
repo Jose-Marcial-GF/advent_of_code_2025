@@ -1,4 +1,4 @@
-package AoC_2025.day08.a;
+package AoC_2025.day08.architecture;
 
 import java.util.List;
 import java.util.Set;
@@ -8,6 +8,15 @@ public record CircuitManager(List<Set<Point>> circuits) {
 
     public static CircuitManager with(List<Set<Point>> circuits) {
         return new CircuitManager(circuits);
+    }
+
+    public Path getTheLastPath(Stream<Path> paths) {
+        return paths.filter(this::isTheLastUnion).findFirst().orElse(null);
+    }
+
+    private boolean isTheLastUnion(Path path) {
+        mergeCircuits(path);
+        return circuits.size() == 1;
     }
 
     public List<Set<Point>> generateCircuit(Stream<Path> limit) {

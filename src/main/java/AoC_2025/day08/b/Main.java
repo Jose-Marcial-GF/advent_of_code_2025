@@ -4,10 +4,11 @@ package AoC_2025.day08.b;
 
 
 
+import AoC_2025.day08.architecture.PathFinder;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -26,7 +27,7 @@ public class Main {
 
 
         static long main() {
-            return PathFinder.with(getPoints()).solve();
+            return PathFinder.with(getPoints()).solveB();
         }
 
 

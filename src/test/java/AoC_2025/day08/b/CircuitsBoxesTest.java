@@ -1,5 +1,6 @@
 package AoC_2025.day08.b;
 
+import AoC_2025.day08.architecture.PathFinder;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,7 +35,7 @@ public class CircuitsBoxesTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(PathFinder.with(short_example.lines()).solve()).isEqualTo(25272);
+        assertThat(PathFinder.with(short_example.lines()).solveB()).isEqualTo(25272);
     }
 
 

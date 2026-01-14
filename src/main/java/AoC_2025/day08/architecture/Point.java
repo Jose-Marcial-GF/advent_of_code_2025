@@ -1,4 +1,4 @@
-package AoC_2025.day08.b;
+package AoC_2025.day08.architecture;
 
 public record Point(int x, int y, int z) {
 
