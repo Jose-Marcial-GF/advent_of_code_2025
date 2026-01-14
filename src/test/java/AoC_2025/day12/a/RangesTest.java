@@ -50,24 +50,10 @@ public class RangesTest {
     @Test
     public void should_solve_example_case() {
         InputParser parser = InputParser.with(short_example);
-        System.out.println(parser.getRequests());
-        System.out.println(parser.getShapes());
         PuzzleSolver solver = new PuzzleSolver();
 
-        System.out.println(parser.getRequests().stream().filter(req -> {
-            // Convertimos el array de cantidades en una lista plana de Shapes usando Streams
-            List<Shape> requiredShapes = IntStream.range(0, req.counts().length)
-                    .boxed()
-                    .flatMap(i -> Collections.nCopies(req.counts()[i], parser.getShapes().get(i)).stream())
-                    .sorted(Comparator.comparingInt(Shape::getArea).reversed()) // Priorizar piezas grandes
-                    .collect(Collectors.toList());
 
-            // Validación rápida de área antes de ejecutar el algoritmo pesado
-            int totalArea = requiredShapes.stream().mapToInt(Shape::getArea).sum();
-            if (totalArea > req.width() * req.height()) return false;
-
-            return solver.canFit(new Region(req.width(), req.height()), requiredShapes);
-        }).count());
+        System.out.println(parser.getRequests().stream().mapToInt(regionRequest -> solver.solve(regionRequest, parser.getShapes())).sum());
     }
     @Test
     public void main() {

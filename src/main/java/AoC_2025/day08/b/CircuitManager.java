@@ -4,16 +4,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class CircuitManager {
+public record CircuitManager(List<Set<Point>> circuits) {
 
-    private final List<Set<Point>> circuits;
-
-
-    private CircuitManager(List<Set<Point>> circuits) {
-        this.circuits = circuits;
-    }
-    
-    public static CircuitManager with(List<Set<Point>> circuits){
+    public static CircuitManager with(List<Set<Point>> circuits) {
         return new CircuitManager(circuits);
     }
 
@@ -22,8 +15,8 @@ public class CircuitManager {
     }
 
     private boolean isTheLastUnion(Path path) {
-            mergeCircuits(path);
-            return circuits.size() == 1;
+        mergeCircuits(path);
+        return circuits.size() == 1;
     }
 
     private void mergeCircuits(Path path) {
@@ -31,12 +24,12 @@ public class CircuitManager {
     }
 
     private void mergeCircuits(Set<Point> circuit1, Set<Point> circuit2) {
-        if(circuit1 == null || circuit2 == null || circuit1.equals(circuit2)) return;
+        if (circuit1 == null || circuit2 == null || circuit1.equals(circuit2)) return;
         circuit1.addAll(circuit2);
         circuits.remove(circuit2);
     }
 
-    private Set<Point> circuitWith(Point p) {
-        return circuits.stream().filter(circuit -> circuit.contains(p)).findFirst().orElse(null);
+    private Set<Point> circuitWith(Point point) {
+        return circuits.stream().filter(circuit -> circuit.contains(point)).findFirst().orElse(null);
     }
 }

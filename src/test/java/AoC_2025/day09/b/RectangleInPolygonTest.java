@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RangesTest {
+public class RectangleInPolygonTest {
     private final String short_example = """
                 7,1
                 11,1
@@ -16,10 +16,15 @@ public class RangesTest {
                 7,3
     """;
 
+
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(1578115935L);
+    }
+
     @Test
     public void should_solve_example_case() {
-        assertThat(RectangleFinder.with(short_example).findLargestRectangleInto(new Polygon(short_example)).area()).isEqualTo(24);
-        assertThat(Main.main()).isEqualTo(1578115935L);
+        assertThat(RectangleFinder.with(short_example.lines()).findLargestRectangleInto(Polygon.with(short_example.lines())).area()).isEqualTo(24);
     }
 
 

@@ -4,16 +4,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class CircuitManager {
+public record CircuitManager(List<Set<Point>> circuits) {
 
-    private final List<Set<Point>> circuits;
-
-
-    private CircuitManager(List<Set<Point>> circuits) {
-        this.circuits = circuits;
-    }
-
-    public static CircuitManager with(List<Set<Point>> circuits){
+    public static CircuitManager with(List<Set<Point>> circuits) {
         return new CircuitManager(circuits);
     }
 
@@ -23,13 +16,12 @@ public class CircuitManager {
     }
 
 
-
     private void mergeCircuits(Path path) {
         mergeCircuits(circuitWith(path.start()), circuitWith(path.end()));
     }
 
     private void mergeCircuits(Set<Point> circuit1, Set<Point> circuit2) {
-        if(circuit1 == null || circuit2 == null || circuit1.equals(circuit2)) return;
+        if (circuit1 == null || circuit2 == null || circuit1.equals(circuit2)) return;
         circuit1.addAll(circuit2);
         circuits.remove(circuit2);
     }

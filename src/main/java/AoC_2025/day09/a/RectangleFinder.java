@@ -4,27 +4,18 @@ import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class RectangleFinder {
-    private final List<Point> locations;
+public record RectangleFinder(List<Point> locations) {
 
-    public RectangleFinder(String points) {
-        this.locations = getPoints(points).toList();
-    }
-
-    private static Stream<Point> getPoints(String points) {
-        return lines(points).map(RectangleFinder::toPoint);
-    }
-
-    private static Stream<String> lines(String points) {
-        return Arrays.stream(points.split("\n"));
+    private static Stream<Point> getPoints(Stream<String> points) {
+        return points.map(RectangleFinder::toPoint);
     }
 
     private static Point toPoint(String point) {
         return Point.of(point.split(","));
     }
 
-    public static RectangleFinder with(String points) {
-        return new RectangleFinder(points);
+    public static RectangleFinder with(Stream<String> points) {
+        return new RectangleFinder(getPoints(points).toList());
     }
 
     public Rectangle findLargestRectangle() {

@@ -1,41 +1,22 @@
 package AoC_2025.day08.b;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class PathFinder {
-    private final List<Point> locations;
+public record PathFinder(List<Point> locations) {
 
-    public PathFinder(String points) {
-        this.locations = getPoints(points).toList();
+    public static PathFinder with(Stream<String> points) {
+        return new PathFinder(toPoints(points).toList());
     }
-
-    private static Stream<Point> getPoints(String points) {
-        return lines(points).map(PathFinder::toPoint);
-    }
-
-    private static Stream<String> lines(String points) {
-        return Arrays.stream(points.split("\n"));
-    }
-
-    private static Point toPoint(String point) {
-        return Point.of(point.split(","));
-    }
-
-    public static PathFinder with(String points) {
-        return new PathFinder(points);
-    }
-
 
     private Stream<Path> generateAllPaths() {
         return IntStream.range(0, locations.size())
                 .boxed()
                 .flatMap(i -> IntStream.range(i + 1, locations.size())
-                        .mapToObj( j -> Path.of(locations.get(i), locations.get(j))))
-                .sorted(Comparator.comparingInt(Path::distance));
+                        .mapToObj(j -> Path.of(locations.get(i), locations.get(j))))
+                .sorted(Comparator.comparingDouble(Path::distance));
 
     }
 
@@ -56,6 +37,13 @@ public class PathFinder {
                 .map(p -> new HashSet<>(List.of(p)))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+    private static Stream<Point> toPoints(Stream<String> points) {
+        return points.map(PathFinder::toPoint);
+    }
 
-    
+    private static Point toPoint(String point) {
+        return Point.of(point.split(","));
+    }
+
+
 }

@@ -3,16 +3,25 @@ package AoC_2025.day11.a;
 
 import java.util.*;
 
-public class PathFinder {
+public record PathFinder(DeviceGraph deviceGraph) {
 
-    public static long countAllPaths(DeviceGraph network, String current, String end, Map<String, Long> memo) {
+
+    public  static PathFinder with(DeviceGraph deviceGraph) {
+        return new PathFinder(deviceGraph);
+    }
+
+    private long countAllPaths(String current, String end, Map<String, Long> memo) {
         if (current.equals(end)) return 1;
         if (memo.containsKey(current)) return memo.get(current);
 
-        long count = network.findDevice(current)
-                .connections().stream().mapToLong(neighbor -> countAllPaths(network, neighbor, end, memo)).sum();
+        long count = deviceGraph.findDevice(current)
+                .connections().stream().mapToLong(neighbor -> countAllPaths(neighbor, end, memo)).sum();
 
         memo.put(current, count);
         return count;
+    }
+
+    public long solve(String start, String end) {
+        return countAllPaths(start, end, new HashMap<>());
     }
 }

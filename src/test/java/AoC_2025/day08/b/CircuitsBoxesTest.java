@@ -1,10 +1,10 @@
-package AoC_2025.day08.a;
+package AoC_2025.day08.b;
 
 import org.junit.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RangesTest {
+
+public class CircuitsBoxesTest {
     private final String short_example = """
                 162,817,812
                 57,618,57
@@ -27,10 +27,14 @@ public class RangesTest {
                 984,92,344
                 425,690,689
     """;
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(8361881885L);
+    }
 
     @Test
     public void should_solve_example_case() {
-        assertThat(PathFinder.with(short_example).solve()).isEqualTo(20);
+        assertThat(PathFinder.with(short_example.lines()).solve()).isEqualTo(25272);
     }
 
 

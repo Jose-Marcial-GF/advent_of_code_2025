@@ -21,12 +21,9 @@ public class Main {
             }
         }
 
-        private static String getProblem() {
-            return getPuzzleInput().collect(Collectors.joining("\n"));
-        }
 
         public static long main() {
-            return Arrays.stream(getProblem().split("\n")).mapToLong(s -> GraphBuilder.of(s).getShortestPath()).sum();
+            return getPuzzleInput().mapToLong(s -> GraphBuilder.of(s).getShortestPath()).sum();
         }
 
 

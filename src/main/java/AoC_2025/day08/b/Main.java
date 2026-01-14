@@ -16,7 +16,7 @@ public class Main {
             return Path.of("src/main/resources/puzzle_input_day_8.txt");
         }
 
-        private static Stream<String> getPuzzleInput(){
+        private static Stream<String> getPoints(){
             try {
                 return Files.lines(getPath());
             } catch (IOException e) {
@@ -24,12 +24,9 @@ public class Main {
             }
         }
 
-        private static String getPoints() {
-            return getPuzzleInput().collect(Collectors.joining("\n"));
-        }
 
-        static void main() {
-            System.out.println(PathFinder.with(getPoints()).solve());
+        static long main() {
+            return PathFinder.with(getPoints()).solve();
         }
 
 

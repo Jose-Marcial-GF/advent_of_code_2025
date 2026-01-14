@@ -3,7 +3,6 @@ package AoC_2025.day09.b;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
             return Path.of("src/main/resources/puzzle_input_day_9.txt");
         }
 
-        private static Stream<String> getPuzzleInput(){
+        private static Stream<String> getPoints(){
             try {
                 return Files.lines(getPath());
             } catch (IOException e) {
@@ -20,12 +19,9 @@ public class Main {
             }
         }
 
-        private static String getPoints() {
-            return getPuzzleInput().collect(Collectors.joining("\n"));
-        }
 
         static Long main() {
-            return RectangleFinder.with(getPoints()).findLargestRectangleInto(new Polygon(getPoints())).area();
+            return RectangleFinder.with(getPoints()).findLargestRectangleInto(Polygon.with(getPoints())).area();
         }
 
 

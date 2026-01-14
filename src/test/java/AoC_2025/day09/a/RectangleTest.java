@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RangesTest {
+public class RectangleTest {
     private final String short_example = """
                 7,1
                 11,1
@@ -15,10 +15,14 @@ public class RangesTest {
                 2,3
                 7,3
     """;
+    @Test
+    public void main_test() {
+        assertThat(Main.main()).isEqualTo(4750297200L);
+    }
 
     @Test
     public void should_solve_example_case() {
-        assertThat(RectangleFinder.with(short_example).findLargestRectangle().area()).isEqualTo(50);
+        assertThat(RectangleFinder.with(short_example.lines()).findLargestRectangle().area()).isEqualTo(50);
     }
 
 

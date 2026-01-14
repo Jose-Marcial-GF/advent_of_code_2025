@@ -16,12 +16,12 @@ public class GraphBuilder {
 
     private static State getGoalState(String line) {
         Matcher m = STATE_PATTERN.matcher(line);
-            m.find();
-            List<Integer> bits = m.group(1).chars()
-                    .mapToObj(c -> c == '#' ? 1 : 0)
-                    .toList();
+        m.find();
+        List<Integer> bits = m.group(1).chars()
+                .mapToObj(c -> c == '#' ? 1 : 0)
+                .toList();
 
-            return new State(bits);
+        return new State(bits);
 
     }
 

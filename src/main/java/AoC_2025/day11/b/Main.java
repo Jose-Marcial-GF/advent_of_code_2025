@@ -26,8 +26,7 @@ public class Main {
         }
 
         public static long main() {
-            DeviceGraph build = GraphBuilder.of(getProblem()).build();
-            return PathFinder.solvePart2(build, "svr", "out");
+            return PathFinder.with(GraphBuilder.of(getProblem()).build()).solve("svr", "out");
         }
 
 

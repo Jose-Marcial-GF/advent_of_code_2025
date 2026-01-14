@@ -1,5 +1,7 @@
 package AoC_2025.day09.b;
 
+import java.util.Optional;
+
 public record Interval(Long start, Long end) {
 
     public boolean connectsWith(Interval next) {
@@ -20,5 +22,9 @@ public record Interval(Long start, Long end) {
 
     public boolean contains(long x) {
         return this.start <= x && this.end > x;
+    }
+
+    public Optional<Interval> absorb(Interval next) {
+        return (connectsWith(next)) ? Optional.of(merge(next)) : Optional.empty();
     }
 }
