@@ -3,7 +3,6 @@ package AoC_2025.day01.b;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -20,11 +19,8 @@ public class Main {
         }
     }
 
-    private static String movements() {
-        return getPuzzleInput().collect(Collectors.joining("\n"));
-    }
 
-    static int main() {
-        return DialBuilder.with(movements()).build().count();
+    static long main() {
+        return DialBuilder.with(getPuzzleInput()).solveB();
     }
 }

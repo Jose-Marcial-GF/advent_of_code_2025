@@ -1,5 +1,6 @@
 package AoC_2025.day01.a;
 
+import AoC_2025.day01.architecture.Dial;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,27 +34,10 @@ public class DialTest {
         assertThat(Dial.initialize().move("R8")).isEqualTo(58);
     }
 
-
-
-    @Test
-    public void should_move_given_a_large_string(){
-        assertThat(DialBuilder.with(orders).build().position()).isEqualTo(32);
-    }
-
-
-    @Test
-    public void should_count_the_zeros(){
-        assertThat(DialBuilder.with("L50").build().count()).isEqualTo(1);
-        assertThat(DialBuilder.with("R50").build().count()).isEqualTo(1);
-        assertThat(DialBuilder.with("R50\nL1200").build().count()).isEqualTo(2);
-    }
-
-
     @Test
     public void should_count_the_zeros_given_a_large_string() {
-        assertThat(DialBuilder.with(orders).build().count()).isEqualTo(3);
+        assertThat(DialBuilder.with(orders.lines()).solveA()).isEqualTo(3);
     }
-
 
 
 

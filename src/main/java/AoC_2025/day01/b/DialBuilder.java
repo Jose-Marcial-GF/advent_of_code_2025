@@ -1,16 +1,18 @@
 package AoC_2025.day01.b;
 
-import java.util.Arrays;
+import AoC_2025.Solver;
+import AoC_2025.day01.architecture.Dial;
+
 import java.util.stream.Stream;
 
-public record DialBuilder(Stream<String> orders) {
+public record DialBuilder(Stream<String> orders) implements Solver.SolverB {
 
-    public static DialBuilder with(String orders) {
-        return new DialBuilder(Arrays.stream(orders.split("\n")));
+    public static DialBuilder with(Stream<String> orders) {
+        return new DialBuilder(orders);
     }
 
 
-    public Dial build() {
+    private Dial build() {
         return orders.reduce(Dial.initialize(), DialBuilder::createNewDial, (a, b) -> b);
     }
 
@@ -28,4 +30,8 @@ public record DialBuilder(Stream<String> orders) {
         return position / 100;
     }
 
+    @Override
+    public long solveB() {
+        return this.build().count();
+    }
 }

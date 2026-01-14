@@ -1,4 +1,4 @@
-package AoC_2025.day01.b;
+package AoC_2025.day01.architecture;
 
 public record Dial(int position, int count) {
     public Dial(int position, int count) {
@@ -16,7 +16,7 @@ public record Dial(int position, int count) {
     }
 
     static int makeValidate(int position) {
-        return (position +100 * Math.max(1, Math.abs(position) / 100)) % (100);
+        return ((position % 100) + 100) % 100;
     }
 
     public int move(String directions) {
