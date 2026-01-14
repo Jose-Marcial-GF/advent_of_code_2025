@@ -1,19 +1,33 @@
 package AoC_2025.day07.b;
 
+import AoC_2025.day07.architecture.World;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public record World(Map<Integer, Long> timelines) {
+public record LightWorld(Map<Integer, Long> timelines) implements World {
 
-    public World update(String layer) {
+    public LightWorld update(String layer) {
 
         Map<Integer, Long> collect = timelines.entrySet().stream().flatMap(
                 set -> splitLightIfRequire(layer, set))
                 
                 .collect(Collectors.toMap(set -> (int) set[0], set -> set[1], Long::sum));
 
-        return new World(collect);
+        return new LightWorld(collect);
+    }
+
+    public static World initialize(String firstLine){
+            return new LightWorld(Map.of(firstLine.indexOf('S'), 1L));
+
+    }
+
+    @Override
+    public Long getReflexions() {
+        return timelines.values().stream()
+                .mapToLong(Long::longValue)
+                .sum();
     }
 
     private static Stream<long[]> splitLightIfRequire(String layer, Map.Entry<Integer, Long> set) {
@@ -32,9 +46,4 @@ public record World(Map<Integer, Long> timelines) {
         return new long[]{set.getKey() + path, set.getValue()};
     }
 
-    public long getTotalTimelines() {
-        return timelines.values().stream()
-                .mapToLong(Long::longValue)
-                .sum();
-    }
 }

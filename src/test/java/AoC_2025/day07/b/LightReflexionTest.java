@@ -1,5 +1,6 @@
 package AoC_2025.day07.b;
 
+import AoC_2025.day07.architecture.Solver;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +34,7 @@ public class LightReflexionTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(LightEngine.build(short_example).getResult()).isEqualTo(40);
+        assertThat(Solver.with(LightWorld::initialize, short_example.lines()).solveA()).isEqualTo(40);
     }
 
 

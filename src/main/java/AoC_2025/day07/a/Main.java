@@ -3,10 +3,11 @@ package AoC_2025.day07.a;
 
 
 
+import AoC_2025.day07.architecture.Solver;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -23,12 +24,8 @@ public class Main {
             }
         }
 
-        private static String problem() {
-            return getPuzzleInput().collect(Collectors.joining("\n"));
-        }
 
-        static int main() {
-            return LightEngine.build(problem()).getAppliedReflexions();
-
+        static Long main() {
+            return Solver.with(LightWorld::initialize, getPuzzleInput()).solveA();
         }
     }

@@ -1,11 +1,13 @@
 package AoC_2025.day07.a;
 
+import AoC_2025.day07.architecture.World;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public record World(Set<Integer> lights, int appliedReflexions) {
+public record LightWorld(Set<Integer> lights, int appliedReflexions) implements World {
 
     private static Set<Integer> splinterSet(String layer) {
         return IntStream.range(0, layer.length())
@@ -13,12 +15,21 @@ public record World(Set<Integer> lights, int appliedReflexions) {
                 .boxed().collect(Collectors.toSet());
     }
 
-    public World update(String layer) {
+    public static World initialize(String firstLine){
+        return new LightWorld(Set.of(firstLine.indexOf('S')), 0);
+    }
+
+    public LightWorld update(String layer) {
         return update(splinterSet(layer));
     }
 
-    private World update(Set<Integer> layer) {
-        return new World(applyReflexionIn(layer), getNewReflexionIndex(layer) + appliedReflexions);
+    @Override
+    public Long getReflexions() {
+        return (long) appliedReflexions;
+    }
+
+    private LightWorld update(Set<Integer> layer) {
+        return new LightWorld(applyReflexionIn(layer), getNewReflexionIndex(layer) + appliedReflexions);
     }
 
     private int getNewReflexionIndex(Set<Integer> lightSet) {
