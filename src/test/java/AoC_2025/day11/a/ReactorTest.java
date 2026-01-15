@@ -1,5 +1,6 @@
 package AoC_2025.day11.a;
 
+import AoC_2025.day11.architecture.GraphBuilder;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

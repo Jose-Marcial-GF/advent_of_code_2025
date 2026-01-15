@@ -2,6 +2,8 @@ package AoC_2025.day11.b;
 
 
 
+import AoC_2025.day11.architecture.DeviceGraph;
+
 import java.util.HashMap;
 import java.util.Map;
 

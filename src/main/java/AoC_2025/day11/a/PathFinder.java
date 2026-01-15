@@ -1,6 +1,8 @@
 package AoC_2025.day11.a;
 
 
+import AoC_2025.day11.architecture.DeviceGraph;
+
 import java.util.*;
 
 public record PathFinder(DeviceGraph deviceGraph) {

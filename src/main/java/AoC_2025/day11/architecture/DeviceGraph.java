@@ -1,6 +1,6 @@
-package AoC_2025.day11.b;
+package AoC_2025.day11.architecture;
 
-import java.util.Map;
+import java.util.*;
 
 public record DeviceGraph(Map<String, Device> devices) {
 
@@ -8,8 +8,8 @@ public record DeviceGraph(Map<String, Device> devices) {
         return new DeviceGraph(devices);
     }
 
-        public Device findDevice(String name) {
-            return devices.get(name);
-        }
+    public Device findDevice(String name) {
+        return devices.get(name);
+    }
 
 }

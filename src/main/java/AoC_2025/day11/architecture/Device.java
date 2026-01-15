@@ -1,4 +1,4 @@
-package AoC_2025.day11.a;
+package AoC_2025.day11.architecture;
 
 import java.util.Set;
 

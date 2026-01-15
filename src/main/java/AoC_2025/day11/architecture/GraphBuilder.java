@@ -1,4 +1,4 @@
-package AoC_2025.day11.b;
+package AoC_2025.day11.architecture;
 
 import java.util.Map;
 import java.util.Set;
@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public record GraphBuilder(DeviceGraph graph) {
+
     public static GraphBuilder of(String input) {
         return new GraphBuilder(DeviceGraph.with(getMap(input)));
     }
