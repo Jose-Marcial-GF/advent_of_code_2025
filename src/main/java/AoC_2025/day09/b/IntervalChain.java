@@ -12,13 +12,10 @@ public class IntervalChain {
             chain.add(next);
             return;
         }
-
-        // Lógica puramente funcional: "Intenta fusionar con el último".
-        // Sin ifs, sin variables temporales, sin índices.
         chain.getLast().absorb(next)
                 .ifPresentOrElse(
-                        this::replaceLast,      // Si se fusionó -> reemplaza el último
-                        () -> chain.add(next)   // Si no -> añade al final
+                        this::replaceLast,
+                        () -> chain.add(next)
                 );
     }
 
@@ -27,7 +24,6 @@ public class IntervalChain {
         chain.add(merged);
     }
 
-    // Método para combinar dos cadenas (necesario para el Collector, aunque sea secuencial)
     public IntervalChain merge(IntervalChain other) {
         other.chain.forEach(this::add);
         return this;

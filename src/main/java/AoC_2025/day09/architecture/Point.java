@@ -1,4 +1,4 @@
-package AoC_2025.day09.a;
+package AoC_2025.day09.architecture;
 
 public record Point(Long x, Long y) {
 

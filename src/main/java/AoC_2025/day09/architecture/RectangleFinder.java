@@ -1,13 +1,15 @@
-package AoC_2025.day09.b;
+package AoC_2025.day09.architecture;
+
+import AoC_2025.Solver;
+import AoC_2025.day09.b.Polygon;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-public record RectangleFinder(List<Point> locations) {
+public record RectangleFinder(List<Point> locations) implements Solver.SolverA, Solver.SolverB {
 
 
     public static RectangleFinder with(Stream<String> points) {
@@ -20,8 +22,10 @@ public record RectangleFinder(List<Point> locations) {
                 .findFirst()
                 .orElse(null);
     }
+    private Rectangle findLargestRectangle() {
+        return streamAllRectangles().findFirst().orElse(null);
+    }
 
-    // Extrajimos la generación de rectángulos para limpiar el método principal
     private Stream<Rectangle> streamAllRectangles() {
         return locations.stream()
                 .flatMap(p1 -> locations.stream()
@@ -30,17 +34,13 @@ public record RectangleFinder(List<Point> locations) {
     }
 
     private boolean isValid(Rectangle rectangle, Polygon polygon) {
-        // 1. Identificamos qué líneas horizontales ("cortes") debemos validar
         LongStream yLevelsToCheck = LongStream.concat(
-                // Los bordes superior e inferior del rectángulo siempre se chequean
                 LongStream.of(rectangle.min(Point::y), rectangle.max(Point::y)),
 
-                // Más cualquier nivel crítico del polígono que pase POR DENTRO del rectángulo
                 Arrays.stream(polygon.criticalYLevels())
                         .filter(rectangle::strictlyContainsY)
         );
 
-        // 2. Validamos que NINGUNO de esos cortes se salga del polígono
         return yLevelsToCheck.noneMatch(y ->
                 polygon.isSegmentOutside(rectangle.min(Point::x), rectangle.max(Point::x), y)
         );
@@ -51,5 +51,15 @@ public record RectangleFinder(List<Point> locations) {
 
     private static Point toPoint(String point) {
         return Point.of(point.split(","));
+    }
+
+    @Override
+    public long solveA() {
+        return findLargestRectangle().area();
+    }
+
+    @Override
+    public long solveB() {
+        return findLargestRectangleInto(Polygon.with(locations)).area();
     }
 }

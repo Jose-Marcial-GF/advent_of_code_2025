@@ -1,9 +1,10 @@
 package AoC_2025.day09.a;
 
+import AoC_2025.day09.architecture.*;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -21,7 +22,7 @@ public class Main {
         }
 
         static long main() {
-            return RectangleFinder.with(getPoints()).findLargestRectangle().area();
+            return RectangleFinder.with(getPoints()).solveA();
         }
 
 

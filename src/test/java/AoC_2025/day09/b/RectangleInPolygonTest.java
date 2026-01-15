@@ -1,5 +1,6 @@
 package AoC_2025.day09.b;
 
+import AoC_2025.day09.architecture.RectangleFinder;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,7 +25,7 @@ public class RectangleInPolygonTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(RectangleFinder.with(short_example.lines()).findLargestRectangleInto(Polygon.with(short_example.lines())).area()).isEqualTo(24);
+        assertThat(RectangleFinder.with(short_example.lines()).solveB()).isEqualTo(24);
     }
 
 

@@ -1,4 +1,4 @@
-package AoC_2025.day09.b;
+package AoC_2025.day09.architecture;
 
 
 import java.util.function.Function;

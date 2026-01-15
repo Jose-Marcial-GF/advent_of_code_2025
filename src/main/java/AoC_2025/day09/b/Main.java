@@ -1,5 +1,7 @@
 package AoC_2025.day09.b;
 
+import AoC_2025.day09.architecture.RectangleFinder;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,7 +23,7 @@ public class Main {
 
 
         static Long main() {
-            return RectangleFinder.with(getPoints()).findLargestRectangleInto(Polygon.with(getPoints())).area();
+            return RectangleFinder.with(getPoints()).solveB();
         }
 
 

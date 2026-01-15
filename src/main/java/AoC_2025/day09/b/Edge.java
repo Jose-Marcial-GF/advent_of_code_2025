@@ -1,5 +1,7 @@
 package AoC_2025.day09.b;
 
+import AoC_2025.day09.architecture.Point;
+
 public record Edge(Point start, Point end) {
 
     boolean isHorizontalAt(long y) {

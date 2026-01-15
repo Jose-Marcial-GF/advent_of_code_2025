@@ -1,19 +1,22 @@
 package AoC_2025.day09.b;
 
+import AoC_2025.day09.architecture.Point;
+
 import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public record Polygon(List<Point> vertex, Map<Long, List<Interval>> rowCache, long[] criticalYLevels) {
-    public  static Polygon with(Stream<String> points) {
-        List<Point> vertex = points.map(Polygon::toPoint).toList();
+    public  static Polygon with(List<Point> vertex) {
+        return new Polygon(vertex, new HashMap<>(), getYLevels(vertex));
+    }
 
-        long[] yLevels = vertex.stream()
+    private static long[] getYLevels(List<Point> vertex) {
+        return vertex.stream()
                 .mapToLong(Point::y)
                 .distinct()
                 .sorted()
                 .toArray();
-        return new Polygon(vertex, new HashMap<>(), yLevels);
     }
 
 
@@ -25,19 +28,15 @@ public record Polygon(List<Point> vertex, Map<Long, List<Interval>> rowCache, lo
 
 
     private List<Interval> calculateIntervalsForY(long y) {
-        // 1. Obtenemos todos los lados del polígono como flujo de objetos 'Edge'
         List<Edge> edges = IntStream.range(0, vertex.size())
                 .mapToObj(this::getEdge)
                 .toList();
 
-        // 2. Concatenamos intervalos horizontales (colineales) e intervalos de intersección
         List<Interval> rawIntervals = Stream.concat(
                 findColinearIntervals(edges, y),
                 findIntersectionIntervals(edges, y)
-        ).sorted(Comparator.comparingLong(Interval::start)).toList(); // Ordenamos antes de fusionar
+        ).sorted(Comparator.comparingLong(Interval::start)).toList();
 
-        // 3. Delegamos en tu método existente para fusionar solapamientos
-        // Nota: rawIntervals es inmutable aquí, si getIntervals requiere mutable, envuélvelo en new ArrayList<>(...)
         return getIntervals(new ArrayList<>(rawIntervals));
     }
 
@@ -51,9 +50,6 @@ public record Polygon(List<Point> vertex, Map<Long, List<Interval>> rowCache, lo
     private Stream<Interval> findIntersectionIntervals(List<Edge> edges, long y) {
         List<Long> xCoords = edges.stream()
                 .filter(e -> !e.isHorizontalAt(y))
-                // CAMBIO AQUÍ: Usamos lógica manual semi-abierta [minY, maxY)
-                // Excluimos el punto más alto de la línea vertical para no duplicar
-                // la intersección en las esquinas superiores.
                 .filter(e -> {
                     long minY = Math.min(e.start().y(), e.end().y());
                     long maxY = Math.max(e.start().y(), e.end().y());
@@ -67,7 +63,6 @@ public record Polygon(List<Point> vertex, Map<Long, List<Interval>> rowCache, lo
                 .mapToObj(i -> new Interval(xCoords.get(i), xCoords.get(i + 1)));
     }
 
-    // Helper para crear el objeto Edge sin ensuciar el código principal con índices módulo size
     private Edge getEdge(int i) {
         return new Edge(vertex.get(i), vertex.get((i + 1) % vertex.size()));
     }
@@ -77,10 +72,6 @@ public record Polygon(List<Point> vertex, Map<Long, List<Interval>> rowCache, lo
                 .sorted(Comparator.comparingLong(Interval::start))
                 .collect(IntervalChain::new, IntervalChain::add, IntervalChain::merge)
                 .toList();
-    }
-
-    private static Point toPoint(String point) {
-        return Point.of(point.split(","));
     }
 
 

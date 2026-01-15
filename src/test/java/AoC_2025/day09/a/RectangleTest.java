@@ -1,5 +1,6 @@
 package AoC_2025.day09.a;
 
+import AoC_2025.day09.architecture.RectangleFinder;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +23,7 @@ public class RectangleTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(RectangleFinder.with(short_example.lines()).findLargestRectangle().area()).isEqualTo(50);
+        assertThat(RectangleFinder.with(short_example.lines()).solveA()).isEqualTo(50);
     }
 
 

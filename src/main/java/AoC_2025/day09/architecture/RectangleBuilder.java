@@ -1,4 +1,4 @@
-package AoC_2025.day09.a;
+package AoC_2025.day09.architecture;
 
 public class RectangleBuilder {
     private Point start;
@@ -26,8 +26,8 @@ public class RectangleBuilder {
         return Math.abs(start.x() - end.x()) + 1;
     }
 
-    public static Rectangle build(Point start, Point point) {
-        return new RectangleBuilder().setStart(start).setEnd(point).createRectangle();
+    public static Rectangle build(Point start, Point end) {
+        return new RectangleBuilder().setStart(start).setEnd(end).createRectangle();
     }
     public Rectangle createRectangle() {
         return new Rectangle(start, end, calculateArea());
