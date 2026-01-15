@@ -1,5 +1,7 @@
 package AoC_2025.day10.a;
 
+import AoC_2025.day10.architecture.State;
+
 import java.util.Objects;
 import java.util.stream.Stream;
 

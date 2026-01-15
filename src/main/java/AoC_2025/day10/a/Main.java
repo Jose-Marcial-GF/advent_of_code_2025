@@ -3,8 +3,6 @@ package AoC_2025.day10.a;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -23,7 +21,7 @@ public class Main {
 
 
         public static long main() {
-            return getPuzzleInput().mapToLong(s -> GraphBuilder.of(s).getShortestPath()).sum();
+            return Solver.with(getPuzzleInput()).solveA();
         }
 
 

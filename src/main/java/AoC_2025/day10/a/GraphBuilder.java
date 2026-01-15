@@ -1,5 +1,9 @@
 package AoC_2025.day10.a;
 
+import AoC_2025.day10.architecture.Graph;
+import AoC_2025.day10.architecture.Operator;
+import AoC_2025.day10.architecture.State;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,13 +32,13 @@ public class GraphBuilder {
 
     private static List<Operator> getOperators(String line) {
         return BUTTON_PATTERN.matcher(line)
-                .results()                                  // 1. Crea un Stream de coincidencias
-                .map(matchResult -> matchResult.group(1))   // 2. Extrae el contenido: "1,3"
-                .map(s -> Arrays.stream(s.split(","))       // 3. Procesa cada string numérico
-                        .map(String::trim)                  // (Opcional) Por seguridad ante espacios
-                        .map(Integer::parseInt)             // Convierte a Integer
-                        .toList())                          // Recolecta a List<Integer>
-                .map(Operator::new)                         // 4. Crea el objeto Operator
-                .toList();                                  // 5. Retorna la lista final
+                .results()
+                .map(matchResult -> matchResult.group(1))
+                .map(s -> Arrays.stream(s.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .toList())
+                .map(Operator::new)
+                .toList();
     }
 }

@@ -2,8 +2,6 @@ package AoC_2025.day10.a;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LightTest {
@@ -15,9 +13,10 @@ public class LightTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(Arrays.stream(short_example.split("\n")).mapToLong(s ->
-                GraphBuilder.of(s).getShortestPath()).sum()).isEqualTo(7);
-
+        assertThat(Solver.with(short_example.lines()).solveA()).isEqualTo(7);
+    }
+    @Test
+    public void main_Test() {
         assertThat(Main.main()).isEqualTo(375);
     }
 

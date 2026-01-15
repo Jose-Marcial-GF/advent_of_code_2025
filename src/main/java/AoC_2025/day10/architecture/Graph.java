@@ -1,4 +1,4 @@
-package AoC_2025.day10.b;
+package AoC_2025.day10.architecture;
 
 import java.util.List;
 

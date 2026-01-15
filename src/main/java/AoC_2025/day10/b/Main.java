@@ -19,12 +19,6 @@ public class Main {
     }
 
     public static long main() {
-        return getPuzzleInput()
-                .mapToLong(Main::solveLine)
-                .sum();
-    }
-
-    private static long solveLine(String line) {
-        return new Solver(GraphBuilder.of(line)).solve(GraphBuilder.of(line).goalState()).orElse(0);
+        return SolverB.with(getPuzzleInput()).solveB();
     }
 }

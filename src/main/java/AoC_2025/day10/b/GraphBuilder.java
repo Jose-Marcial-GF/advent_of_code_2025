@@ -1,5 +1,9 @@
 package AoC_2025.day10.b;
 
+import AoC_2025.day10.architecture.Graph;
+import AoC_2025.day10.architecture.Operator;
+import AoC_2025.day10.architecture.State;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,10 +19,9 @@ public class GraphBuilder {
 
     private static State parseGoal(String line) {
         Matcher m = GOAL_PATTERN.matcher(line);
-        if (m.find()) {
+        m.find();
             return new State(parseIntList(m.group(1)));
-        }
-        throw new IllegalArgumentException("No se encontró el objetivo {...} en la línea: " + line);
+
     }
 
     private static List<Operator> parseOperators(String line) {

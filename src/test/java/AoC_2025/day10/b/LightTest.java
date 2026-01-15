@@ -17,14 +17,9 @@ public class LightTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(short_example.lines()
-                    .mapToLong(LightTest::solveLine)
-                    .sum()).isEqualTo(33);
-        }
+        assertThat(SolverB.with(short_example.lines()).solveB()).isEqualTo(33);
+    }
 
-        private static long solveLine(String line) {
-            return new Solver(GraphBuilder.of(line)).solve(GraphBuilder.of(line).goalState()).orElse(0);
-        }
 
 }
 

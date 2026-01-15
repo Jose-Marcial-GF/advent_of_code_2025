@@ -1,4 +1,4 @@
-package AoC_2025.day10.b;
+package AoC_2025.day10.architecture;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,5 +41,14 @@ public record State(List<Integer> joltage) {
 
     public int size() {
         return joltage.size();
+    }
+
+    public State apply(Operator op) {
+        return new State(IntStream.range(0, joltage.size())
+                .mapToObj(i -> op.lights().contains(i)
+                        ? joltage.get(i) ^ 1
+                        : joltage.get(i))
+                .toList());
+
     }
 }

@@ -14,12 +14,12 @@ public record Solver (Function<String, Sheet> sheetWith, Function<Sheet, Calcula
     }
 
     @Override
-    public long solveB() {
+    public long solveA() {
         return calculatorWith.apply(sheetWith.apply(input)).calculateTotal();
     }
 
     @Override
-    public long solveA() {
+    public long solveB() {
         return calculatorWith.apply(sheetWith.apply(input)).calculateTotal();
     }
 }
