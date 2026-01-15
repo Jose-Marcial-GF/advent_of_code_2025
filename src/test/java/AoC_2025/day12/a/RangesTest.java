@@ -49,7 +49,7 @@ public class RangesTest {
 
     @Test
     public void should_solve_example_case() {
-        assertThat(InputParser.with(short_example).getRequests().stream().mapToInt(regionRequest -> new PuzzleSolver().solve(regionRequest, InputParser.with(short_example).getShapes())).sum()).isEqualTo(2);
+        assertThat(Solver.with(short_example.lines()).solveA()).isEqualTo(2);
     }
 
 

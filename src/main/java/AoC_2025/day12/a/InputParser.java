@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class InputParser {
+public class InputParser   {
     private final List<Shape> shapes;
     private final List<RegionRequest> requests;
 
