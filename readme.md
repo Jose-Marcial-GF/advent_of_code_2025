@@ -42,106 +42,106 @@ Se a utilizado a la ia para los siguientes procesos:
 ## 📂 Soluciones por Día
 
 ### 🔐 Día 1: Secret Entrance
-**Parte A:** Circular dial con aritmética modular
+**Parte A:** 
 📑 [Documentación](./doc/day01a.md) | 💾 [Código](./src/main/java/AoC_2025/day01/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day01/a)
 
-**Parte B:** Detección de cruces por cero
+**Parte B:** 
 📑 [Documentación](./doc/day01b.md) | 💾 [Código](./src/main/java/AoC_2025/day01/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day01/b)
 
 ---
 
 ### 🛂 Día 2: ID Classification
-**Parte A:** Validación de IDs con rangos
+**Parte A:** 
 📑 [Documentación](./doc/day02a.md) | 💾 [Código](./src/main/java/AoC_2025/day02/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day02/a)
 
-**Parte B:** Sistema de clasificación extendido
+**Parte B:** 
 📑 [Documentación](./doc/day02b.md) | 💾 [Código](./src/main/java/AoC_2025/day02/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day02/b)
 
 ---
 
 ### 🔋 Día 3: Battery Maximization
-**Parte A:** Algoritmo greedy para selección de dígitos
+**Parte A:** 
 📑 [Documentación](./doc/day03a.md) | 💾 [Código](./src/main/java/AoC_2025/day03/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day03/a)
 
-**Parte B:** Optimización de baterías
+**Parte B:** 
 📑 [Documentación](./doc/day03b.md) | 💾 [Código](./src/main/java/AoC_2025/day03/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day03/b)
 
 ---
 
 ### 🖨️ Día 4: Printing Department
-**Parte A:** Grid 2D con búsqueda de 8 vecinos
+**Parte A:** 
 📑 [Documentación](./doc/day04a.md) | 💾 [Código](./src/main/java/AoC_2025/day04/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day04/a)
 
-**Parte B:** Procesamiento de grid extendido
+**Parte B:** 
 📑 [Documentación](./doc/day04b.md) | 💾 [Código](./src/main/java/AoC_2025/day04/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day04/b)
 
 ---
 
 ### 📦 Día 5: Inventory Management
-**Parte A:** Verificación de rangos con enum-based status
+**Parte A:** 
 📑 [Documentación](./doc/day05a.md) | 💾 [Código](./src/main/java/AoC_2025/day05/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day05/a)
 
-**Parte B:** Gestión de inventario extendida
+**Parte B:** 
 📑 [Documentación](./doc/day05b.md) | 💾 [Código](./src/main/java/AoC_2025/day05/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day05/b)
 
 ---
 
 ### 🐙 Día 6: Cephalopod Math Calculator
-**Parte A:** Strategy Pattern con interfaz `OperatorList`
+**Parte A:** 
 📑 [Documentación](./doc/day06a.md) | 💾 [Código](./src/main/java/AoC_2025/day06/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day06/a)
 
-**Parte B:** Calculadora con operadores múltiples
+**Parte B:** 
 📑 [Documentación](./doc/day06b.md) | 💾 [Código](./src/main/java/AoC_2025/day06/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day06/b)
 
 ---
 
 ### 🔦 Día 7: Beam Management
-**Parte A:** Patrón Singleton para gestión de beams
+**Parte A:** 
 📑 [Documentación](./doc/day07a.md) | 💾 [Código](./src/main/java/AoC_2025/day07/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day07/a)
 
-**Parte B:** Sistema de beams extendido
+**Parte B:** 
 📑 [Documentación](./doc/day07b.md) | 💾 [Código](./src/main/java/AoC_2025/day07/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day07/b)
 
 ---
 
 ### 🎀 Día 8: Christmas Decorations
-**Parte A:** Coordenadas 3D con selección greedy de pares
+**Parte A:** 
 📑 [Documentación](./doc/day08a.md) | 💾 [Código](./src/main/java/AoC_2025/day08/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day08/a)
 
-**Parte B:** Gestión de circuitos de decoraciones
+**Parte B:** 
 📑 [Documentación](./doc/day08b.md) | 💾 [Código](./src/main/java/AoC_2025/day08/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day08/b)
 
 ---
 
 ### 🧩 Día 9: Tiles Manager
-**Parte A:** Cálculo de área de rectángulos con `flatMap`
+**Parte A:** 
 📑 [Documentación](./doc/day09a.md) | 💾 [Código](./src/main/java/AoC_2025/day09/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day09/a)
 
-**Parte B:** Procesamiento geométrico extendido
+**Parte B:** 
 📑 [Documentación](./doc/day09b.md) | 💾 [Código](./src/main/java/AoC_2025/day09/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day09/b)
 
 ---
 
 ### ⚡ Día 10: Circuit Breaker & Joltage
-**Parte A:** BFS recursivo con representación de estado inmutable
+**Parte A:** 
 📑 [Documentación](./doc/day10a.md) | 💾 [Código](./src/main/java/AoC_2025/day10/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day10/a)
 
-**Parte B:** Divide & Conquer con reducción de paridad (Matemática Discreta)
+**Parte B:** 
 📑 [Documentación](./doc/day10b.md) | 💾 [Código](./src/main/java/AoC_2025/day10/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day10/b)
 
 ---
 
 ### 🏭 Día 11: Factory Maintenance
-**Parte A:** Graph Traversal con validación simple
+**Parte A:** 
 📑 [Documentación](./doc/day11a.md) | 💾 [Código](./src/main/java/AoC_2025/day11/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day11/a)
 
-**Parte B:** DP con State Pattern y claves compuestas
+**Parte B:** 
 📑 [Documentación](./doc/day11b.md) | 💾 [Código](./src/main/java/AoC_2025/day11/b) | 🛡️ [Tests](./src/test/java/AoC_2025/day11/b)
 
 ---
 
 ### 🎄 Día 12: Christmas Tree Farm
-**Parte A:** Backtracking con heurística "Largest Area First"
+**Parte A:** 
 📑 [Documentación](./doc/day12a.md) | 💾 [Código](./src/main/java/AoC_2025/day12/a) | 🛡️ [Tests](./src/test/java/AoC_2025/day12/a)
 
 *Proyecto realizado como parte de la asignatura de Ingeniería del Software II - ULPGC.*
